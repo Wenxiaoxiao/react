@@ -1,0 +1,60 @@
+.premiumBox {
+  position: relative;
+  width: 95%;
+  color: #fff;
+  font-size: 0.4rem;
+  padding: r(20);
+  border: 1px solid #ffae00;
+  border-radius: 5px;
+  .qm-change {
+    height: r(60);
+    margin-bottom: r(15);
+    width: 100%;
+  }
+  .labeltxt {
+    width: 25%;
+    height: r(60);
+    float: left;
+    line-height: r(60);
+    color: #fff;
+    display: inline-block;
+  }
+  
+  .box-right {
+    float: right;
+    width: 72%;
+    height: r(60);
+    line-height: r(60);
+  }
+  .label-line{
+    display: inline-block;
+    height: r(60);
+    line-height: r(60);
+    padding: 0 5px;
+    margin-right: 10px;
+  }
+
+  .changes {
+    width: 100%;
+    height: 100%;
+    padding-left: r(20);
+    line-height: r(55);
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #eee;
+  }
+
+
+  .btn{
+      width: 60%;
+      background-color: #fef510;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 900;
+      display: block;
+      margin: 10px auto;
+      font-size: r(34);
+      line-height: r(70);
+      color: #ff4800;
+  }
+}

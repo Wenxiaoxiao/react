@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!--顶部css-->
+        @@include("include/header.htm",{ "title":"保障计划私人订制", "keywords": "保障计划私人订制", "description": "" })
+        <link rel="stylesheet" href="@@webRoot/lib/css/swiper.min.css">
+        
+    </head>
+
+    <body>
+        <!--页面加载动画-->
+        <!-- @@include("include/ready-ani.htm") -->
+        <div class="body-container YLB_success">
+            <div class="suc_content">
+                <img src="@@webRoot/lib/images/YLB/dz_bg.png" alt="" class="suc_Bg">
+                <div class="s_content">
+                    <div class="s_top">
+                        <p>保障方案私人定制 <span class="rig"><i class="iconfont icon-naozhong"></i><i class="times"></i></span>
+                        </p>
+                    </div>
+                    <div class="s_top1">
+                        <img src="@@webRoot/lib/images/YLB/susLess.png" alt="">
+                    </div>
+                    <div class="s_top2 layerBox">
+                        <img src="@@webRoot/lib/images/YLB/dz_success.png" alt="">
+                        <div class="pos1">
+                            <p class="p1">我的私人定制方案</p>
+                            <p class="p2">点击查看</p>
+                        </div>
+                    </div>
+                    <div class="s_bottom">
+                        <div class="s_Next layerBox">
+                            <span>点击查看规划师微信</span>
+                            <i class="iconfont icon-jiantouzuo-copy fr"></i>
+                            <i class="iconfont icon-erweima fr"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="succ_ter">
+            <div class="suc_bos">
+                <div class="suc_ters">
+                    <div class="erweima"><img src="@@webRoot/lib/images/YLB/p6.jpg" alt=""></div>
+                    <img src="@@webRoot/lib/images/YLB/ter.png" alt="">
+                    <div class="guihuashiWx">
+                        <div class="guihuashiWx1"></div>
+                        <div class="guihuashiWx2"></div>
+                    </div>
+                    <span class="closeBtn"></span>
+                </div>
+            </div>
+        </div>
+         <!-- 微信打开蒙版 -->
+            <div class="shareLayer">
+                <div class="shareContet">
+                    <img src="@@webRoot/lib/images/YLB/d_jiantou_01.png" alt="">
+                </div>
+            </div>
+        <div class="body-container YLB_index">
+            <!-- 方案选择 -->
+            <div class="selectPlan_mask"></div>
+            <div class="select_info"></div>
+            <div class="header">
+                <img src="@@webRoot/lib/images/YLB/a1.png" alt="">
+                <div class="lastTime">
+                    <i class="iconfont icon-naozhong"></i><span class="lasTxt">距结束</span> <span
+                        class="day">00</span>天<span class="hour">00</span>小时<span class="minu">00</span>分钟
+                </div>
+                <div class="lastNum">
+                    <div class="lastBox">
+                        <p class="p3">
+                            <span class="activityDesc">
+                        </p>
+                        <p class="p4">剩余名额：</p>
+                        <div class="lastNumber lastNumber1">
+                                
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <!--遇到一些问题-->
+                <!-- <div class="question">
+
+                </div> -->
+                <img src="@@webRoot/lib/images/YLB/question.png" alt="" class="img-c">
+                <!--专业事情专业人做-->
+                <div class="someBodyMake">
+                    
+                </div>
+
+                <!--贴图-->
+                <div class="pic">
+                    <img src="@@webRoot/lib/images/YLB/a4.png" alt="">
+                </div>
+                <div class="pic">
+                    <img src="@@webRoot/lib/images/YLB/a5.png" alt="">
+                </div>
+                <div class="pic">
+                    <img src="@@webRoot/lib/images/YLB/a6.png" alt="">
+                </div>
+                <div class="pic last-img">
+                    <img src="@@webRoot/lib/images/YLB/a7.png" alt="">
+                    <p>所有保险服务均由梧桐树保险经纪有限公司提供</p>
+                </div>
+                
+                <div class="pic fixBottom">
+                    <div class="fic">
+                        <div class="payBtn">
+                            立即抢购
+                        </div>
+                        <div class="limitPrice">
+                            <div class="lef">
+                                <span class="spa3">￥<b class="realPrice"></b></span>
+                            </div>
+                            <div class="lef lef1">
+                                <p class="spa1"><span class="spa4">限时特价</span></p>
+                                <p class="spa2">￥<span class="hotPrice"></span></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pic fixTop">
+                    <div class="fic">
+                        <img src="@@webRoot/lib/images/YLB/a18.jpg" alt="">
+                        <div class="lastNumber lastNumber2">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="footer clearfix">
+            <div class="footer_btn mine">我的方案></div>
+            <div class="footer_btn make">立即定制></div>
+        </div> -->
+        </div>
+        @@include("include/footer.htm")
+        <script type="text/html" id="planList">
+        <div class="selct_list">
+            {{each data as item,index}} {{if item.active}}
+            <span class="selct_list_item active">{{item.name}}<i><img src="@@webRoot/lib/images/YLB/a15.png" alt=""></i></span> {{else}}
+            <span class="selct_list_item">{{item.name}}<i><img src="@@webRoot/lib/images/YLB/a15.png" alt=""></i></span> {{/if}} {{/each}}
+        </div>
+        <div class="select_info_desc">
+            <div class="select_content">
+                {{each planDetail.data as item,index}}
+                <div class="select_item {{if index == 1}}active{{/if}} clearfix">
+                    <div class="select_icon"><img src="@@webRoot/lib/images/YLB/a16.png" alt=""></div>
+                    <div class="select_item_desc">{{item.title}}:{{item.info}}</div>
+                </div>
+                {{/each}}
+
+                <div class="select_footer">
+                    <span class="price">￥{{planDetail.price}}元</span>
+                    <span class="btn" price="{{planDetail.price}}" desc="{{planDetail.name}}">立即定制></span>
+                </div>
+            </div>
+        </div>
+    </script>
+    </body>
+    <script src="@@webRoot/lib/js/swiper.min.js"></script>
+    <script src="@@webRoot/lib/js/moment.min.js"></script>
+    <!-- 微信支付 -->
+    <script src="@@webRoot/lib/js/wxpay.js"></script>
+    <script>
+        $(function () {
+            var login = new YlbLogin()
+            login.init(function (user) {
+                $.shareWx({
+                    title: "点击预约专属规划师顾问",
+                    desc: '1对1专业咨询，定制私人保障方案，在线30天，帮你买对保险不踩坑。'
+                });
+                var openId;
+                var payFlag = true;
+                var customizeId = $.getQueryString("customizeId") ? $.getQueryString("customizeId") : "1144538773039194112";
+                //获取活动相关信息
+                customizeDetail(customizeId);
+
+                //判断用户是否下过单处理
+                if (user) {
+                    customizeOrder(customizeId);
+                } else {
+                    $(".YLB_index").show();
+                    $(".YLB_success").hide();
+                }
+
+                var width = parseInt($(".swiper-slide").width()) / 1.8;
+                //轮播图
+                var banOffTop = $(".lastNum").offset().top; //获取到距离顶部的垂直距离
+                var scTop = 0
+                $(document).scroll(function () {
+                    scTop = $(this).scrollTop(); //获取到滚动条拉动的距离
+                    //console.log(scTop);查看滚动时，垂直方向上，滚动条滚动的距离
+                    if (scTop >= banOffTop) {
+                        //核心部分：当滚动条拉动的距离大于等于导航栏距离顶部的距离时，添加指定的样式
+                        $(".fixTop").fadeIn();
+                    } else {
+                        $(".fixTop").hide();
+                    }
+                })
+                $(".layerBox").click(function () {
+                    $(".succ_ter").fadeIn()
+                })
+                $(".closeBtn").click(function () {
+                    $(".succ_ter").hide()
+                })
+
+                $(".shareLayer").click(function () {
+                    $(".shareLayer").hide()
+                })
+
+                function customizeDetail(id) { //活动时间/数量接口
+                    $.ajaxPackage({
+                        type: "get",
+                        url: "/farmind/customize/api/customizeDetail?customizeId=" + id,
+                        contentType: "application/json",
+                        async: true,
+                        success: function (data, isError) {
+                            if (!isError) {
+                                return;
+                            };
+                            $(".activityDesc").html(data.data.activityDesc ? data.data.activityDesc : '远虑保微信频道讲座专享') //活动描述
+                            $(".hotPrice").html(data.data.originalPrice ? data.data.originalPrice : 0) //限时特价
+                            $(".realPrice").html(data.data.activityPrice ? data.data.activityPrice : 0) //实际价格
+                            timelose(data.data.activityTime, data.data.originalPrice);
+                            if (data.data.residualQuota && data.data.residualQuota <= 0) {
+                                $(".realPrice").html(data.data.originalPrice) //实际价格
+                            }
+                            if (data.data.enable == 'false') { //活动取消
+                                $(".realPrice").html(data.data.originalPrice); //实际价格
+                                setLastNum(0, data.data.originalPrice);
+                                $(".lastTime").hide();
+                            } else {
+                                setLastNum(data.data.residualQuota, data.data.originalPrice);
+                            }
+                            //立即支付的点击事件
+                            $(".payBtn").click(function () {
+                                // if (!user && !$.tools().isWeiXin()) {
+                                //     $(".shareLayer").show();
+                                //     return;
+                                // }
+                                if (payFlag) {
+                                    payFlag = false;
+                                    var params = {
+                                        title: "保障计划私人订制",
+                                        totalAmount: $(".realPrice").html(),
+                                        userId: user.id,
+                                        customizeId: customizeId,
+                                    }
+                                    //创建订单
+                                    $.ajaxPackage({
+                                        type: "post",
+                                        url: "/yuanlv/order/api/newOrder",
+                                        contentType: "application/json",
+                                        async: true,
+                                        data: JSON.stringify(params),
+                                        success: function (data, isError) {
+                                            payFlag = true;
+                                            if (!isError) {
+                                                return;
+                                            };
+                                            wxPayFun(user, data.data.id)
+                                            // window.location.href = "./YLB_pay.html?orderNo=" + data.data.id;
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    })
+                };
+
+                function wxPayFun(user, id) {
+                    var wxPayApi = null;
+                    wxPayApi = new WxPay();
+                    var payFlag = true;
+                    wxPay();
+
+                    function wxPay() {
+                        var self = this;
+                        //微信公众号支付
+                        if ($.tools().isWeiXin()) {
+                            var self = this;
+                            wxPayApi.pay({
+                                "tradeNo": id,
+                                "openid": user.openid
+                            })
+                                .done(function (res) {
+                                    payFlag = true;
+                                    window.location.href = "./YLB_orderDetail.html?orderId=" + id
+                                })
+                                .fail(function (error) {
+                                    payFlag = true;
+                                    $.layerAlert('您的支付请求失败，失败原因：' + error);
+                                });
+                        } else {
+                            self.payFlag = true;
+                            //微信web支付
+                            var target = 'https://' + window.location.host + '/pay/wechat/h5?tradeNo=' +
+                                id + '&orderType=farmind';
+                            window.location.href = './payLead.html?payUrl=' + target;
+                        }
+                    }
+
+                    // YLB_pay.init();
+                }
+
+                function customizeOrder(customizeId) { //是否支付成功订单userId:'',customizeId:''
+                    $.ajaxPackage({
+                        type: "post",
+                        url: "/farmind/customize/api/customizeOrder",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            userId: user.id,
+                            customizeId: customizeId,
+                            status: 2
+                        }),
+                        async: true,
+                        success: function (data, isError) {
+                            if (!isError) {
+                                return;
+                            }
+                            if (data.data && data.data.length > 0) { //已经有订单
+                                $.ajaxPackage({
+                                    type: "post",
+                                    url: "/farmind/qrCode/api/getInfo",
+                                    data: JSON.stringify({}),
+                                    contentType: "application/json",
+                                    async: true,
+                                    success: function (orderDetail, orderErr) {
+                                        if (!orderErr) {
+                                            return;
+                                        };
+
+                                        if (orderDetail.data && orderDetail.data.qrCode && orderDetail.data.qrCode.length > 2) {
+                                            $(".erweima img").attr("src", JSON.parse(orderDetail.data.qrCode)[0].url)
+                                        }
+                                        $(".guihuashiWx .guihuashiWx1").html("规划师微信号:" + orderDetail.data.wxNum);
+                                        $(".guihuashiWx .guihuashiWx2").html("规划师手机号:" + orderDetail.data.mobile);
+                                        $("title").html("我的定制");
+                                        $(".YLB_index").hide();
+                                        $(".YLB_success").show();
+                                        var time = data.data[0].createTime;
+                                        $(".times").html(time.substring(0, 10))
+
+                                    }
+                                })
+                            } else {
+                                $(".YLB_index").show();
+                                $(".YLB_success").hide();
+                                visitor(customizeId);
+                            }
+                        }
+                    })
+                };
+
+                function visitor(id) { //访客数量统计
+                    $.ajaxPackage({
+                        type: "post",
+                        url: "/farmind/customize/api/visitor",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            customizeId: id,
+                            openId: user.openid,
+                        }),
+                        async: true,
+                        success: function (data, isError) {
+                            if (!isError) {
+                                return;
+                            };
+
+                        }
+                    })
+                };
+
+                function setLastNum(num) { //数量设置
+                    if (!num && num != 0) return;
+                    var str = num + "";
+                    var arrStr = str.split("");
+                    var span = "";
+                    for (var i = 0; i < arrStr.length; i++) {
+                        span += '<span class="span1">' + arrStr[i] + '</span>'
+                    }
+                    span += '<span class="span2">名</span>';
+                    $(".lastNumber").html(span);
+
+                }
+
+                var certifySwiper = new Swiper('#certify .swiper-container', {
+                    // watchSlidesProgress: true,
+                    slidesPerView: 3,
+                    centeredSlides: true,
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                    on: {
+                        progress: function (progress) {
+                            console.log("progress");
+                            for (i = 0; i < this.slides.length; i++) {
+                                var slide = this.slides.eq(i);
+                                var slideProgress = this.slides[i].progress;
+                                console.log("slideProgress" + slideProgress);
+                                modify = 1;
+                                if (Math.abs(slideProgress) > 1) {
+                                    modify = Math.abs(slideProgress);
+                                }
+                                console.log("modify" + modify);
+                                translate = slideProgress * modify * width + 'px';
+                                scale = 1 - Math.abs(slideProgress) / 5;
+                                zIndex = 999 - Math.abs(Math.round(10 * slideProgress));
+                                slide.transform('translateX(' + translate + ') scale(' + scale + ')');
+                                slide.css('zIndex', zIndex);
+                                slide.css('opacity', 1);
+                                if (Math.abs(slideProgress) >= 2) {
+                                    slide.css('opacity', 0);
+                                }
+                            }
+                        },
+                        setTransition: function (transition) {
+                            for (var i = 0; i < this.slides.length; i++) {
+                                var slide = this.slides.eq(i)
+                                slide.transition(transition);
+                            }
+
+                        }
+                    }
+
+                })
+
+                function timelose(desTime, nowPrice) { //倒计时
+                    var timeDatas = getTimeInterForDes(desTime);
+                    var timer = setInterval(function () {
+                        var timeData = getTimeInterForDes(desTime);
+                        var days = timeData.days * 1 < 10 ? "0" + timeData.days : timeData.days,
+                            hours = timeData.hours * 1 < 10 ? "0" + timeData.hours : timeData.hours,
+                            minutes = timeData.minutes * 1 < 10 ? "0" + timeData.minutes : timeData.minutes,
+                            seconds = timeData.seconds * 1 < 10 ? "0" + timeData.seconds : timeData.seconds;
+                        if ((timeData.seconds * 1) < 0) {
+                            $(".realPrice").html(nowPrice) //实际价格
+                            clearInterval(timer);
+                        } else if (timeData.days == "0" && timeData.hours == "0" && timeData.minutes == "0" && timeData.seconds == "0") {
+                            $(".realPrice").html(nowPrice) //实际价格
+                            clearInterval(timer);
+                        }
+                        $('.day').text(days);
+                        $('.hour').text(hours);
+                        $('.minu').text(minutes);
+                        $('.sec').text(seconds);
+                    }, 1000);
+                };
+
+                function getTimeInterForDes(desTime) { //倒计时
+                    var time = {};
+                    var f = moment(desTime); //未来目标时间
+                    var c = moment(moment().format("YYYY-MM-DD HH:mm:ss")); //当前时间
+                    var days = time.days = f.diff(c, 'days'),
+                        hours = time.hours = f.diff(c, 'hours') - days * 24,
+                        minutes = time.minutes = f.diff(c, 'minutes') - days * 24 * 60 - hours * 60,
+                        seconds = time.seconds = f.diff(c, 'seconds') - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60;
+                    return time;
+                }
+                // var YLB_index = {
+                //     planIndex: 0,
+                //     planListData: [{
+                //         "name": "单身贵族",
+                //         "data": [{
+                //             "title": "服务对象",
+                //             "info": "单人"
+                //         }, {
+                //             "title": "方案特点",
+                //             "info": "根据年龄、职业、经济能力、个人偏好等,进行个性化推荐,良性定制最具性价比的保险方案"
+                //         }, {
+                //             "title": "配置范围",
+                //             "info": "高性价比互联网保险"
+                //         }, {
+                //             "title": "服务方式",
+                //             "info": "一对一微信+电话咨询"
+                //         }, {
+                //             "title": "服务时间",
+                //             "info": "周一至周五9:00-18:00"
+                //         }],
+                //         "price": "19.9"
+                //     }, {
+                //         "name": "温馨小家",
+                //         "data": [{
+                //             "title": "服务对象",
+                //             "info": "2-4人、含父母、配偶、子女"
+                //         }, {
+                //             "title": "方案特点",
+                //             "info": "综合考虑家庭成员个人情况及家庭收入、预期支出等情况,为家庭定制更科学全面的保障计划"
+                //         }, {
+                //             "title": "配置范围",
+                //             "info": "高性价比互联网保险"
+                //         }, {
+                //             "title": "服务方式",
+                //             "info": "一对一微信+电话咨询"
+                //         }, {
+                //             "title": "服务时间",
+                //             "info": "周一至周五9:00-18:00"
+                //         }],
+                //         "price": "29.9"
+                //     }, {
+                //         "name": "三世同堂",
+                //         "data": [{
+                //             "title": "服务对象",
+                //             "info": "5-8人、含父母、配偶、子女"
+                //         }, {
+                //             "title": "方案特点",
+                //             "info": "匹配最善于为大家庭定制方案的保险顾问,为每个家庭成员合理规划保险,在保障全面性和性价比上面达到最佳的平衡点"
+                //         }, {
+                //             "title": "配置范围",
+                //             "info": "高性价比互联网保险"
+                //         }, {
+                //             "title": "服务方式",
+                //             "info": "一对一微信+电话咨询"
+                //         }, {
+                //             "title": "服务时间",
+                //             "info": "周一至周五9:00-18:00"
+                //         }],
+                //         "price": "39.9"
+                //     }, {
+                //         "name": "带病投保",
+                //         "data": [{
+                //             "title": "服务对象",
+                //             "info": "乙肝、结石、部分肿瘤、息肉等非完全健康体(单人)"
+                //         }, {
+                //             "title": "方案特点",
+                //             "info": "个人的健康状况直接影响投保策略,此计划匹配最擅长待命投保的保险专家为您详细指导,杜绝任何因健康问题产生的后续理赔纠纷(若因健康问题无产品匹配,即刻退回定制费)"
+                //         }, {
+                //             "title": "配置范围",
+                //             "info": "高性价比互联网保险"
+                //         }, {
+                //             "title": "服务方式",
+                //             "info": "一对一微信+电话咨询"
+                //         }, {
+                //             "title": "服务时间",
+                //             "info": "周一至周五9:00-18:00"
+                //         }],
+                //         "price": "39.9"
+                //     }],
+                //     init: function() {
+                //         this.desplayPlan();
+                //     },
+                //     desplayPlan: function() {
+                //         var self = this;
+                //         var data = {};
+                //         data.data = this.planListData;
+                //         data.planDetail = this.planListData[this.planIndex];
+                //         for (var i = 0; i < this.planListData.length; i++) {
+                //             if (this.planIndex == i) {
+                //                 this.planListData[i].active = true;
+                //             } else {
+                //                 this.planListData[i].active = false;
+                //             }
+                //         }
+                //         var planList = template("planList", data); //模板渲染
+                //         $(".select_info").html(planList);
+                //         //方案切换
+                //         $(".selct_list .selct_list_item").click(function() {
+                //             $(".selct_list .selct_list_item").removeClass('active');
+                //             $(this).addClass('active');
+                //             self.planIndex = $(this).index(".selct_list_item");
+                //             self.desplayPlan();
+                //         })
+
+                //         //立即定制的点击事件
+                //         $(".select_footer .btn").click(function() {
+                //             self.hidePlan();
+                //             var price = $(this).attr("price");
+                //             var name = $(this).attr("desc");
+                //             window.location.href = "./YLB_planDesc.html?price=" + price + "&name=" + encodeURI(name);
+                //         })
+                //     },
+                //     //显示方案
+                //     showPlan: function() {
+                //         $(".selectPlan_mask").show();
+                //         $(".select_info").show();
+                //     },
+                //     //隐藏方案
+                //     hidePlan: function() {
+                //         $(".selectPlan_mask").hide();
+                //         $(".select_info").hide();
+                //     },
+
+                // }
+                // YLB_index.init();
+
+                //方案定制的点击事件
+                // $(".make").click(function() {
+                //     if (!$.tools().isWeiXin()) {
+                //         return layer.msg("请在微信中使用该功能!")
+                //     }
+                //     YLB_index.showPlan();
+                // })
+
+                // //我的方案的点击事件
+                // $(".mine").click(function() {
+                //     if (!$.tools().isWeiXin()) {
+                //         return layer.msg("请在微信中使用该功能!")
+                //     }
+                //     window.location.href = "./YLB_orderList.html";
+                // })
+
+
+                // $(".selectPlan_mask").click(function() {
+                //     YLB_index.hidePlan();
+                // })
+            })
+
+
+        })
+    </script>
+
+</html>

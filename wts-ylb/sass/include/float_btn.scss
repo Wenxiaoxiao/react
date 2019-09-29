@@ -1,0 +1,32 @@
+.float_normal{
+    .foot_btn{
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9;
+        width:r(599);
+        height:r(112);
+        bottom:r(15);
+        background: url("../images/dyfbx-0925/p-bottom.png") no-repeat;
+        background-size: 100% 100%;
+    }
+    .advisory{
+        position: fixed;
+        z-index: 9;
+        height:r(260);
+        width: r(71);
+        background: url("../images/dyfbx-0925/p-right.png") no-repeat;
+        background-size: 100% 100%;
+        right:(0);
+        top:r(514);
+    }
+    .top142{
+        top:r(142);
+    }
+    .bottom20{
+        bottom:r(20);
+    }
+    .top342{
+        top:r(342);
+    }
+}

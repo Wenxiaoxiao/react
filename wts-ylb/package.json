@@ -1,0 +1,31 @@
+{
+  "name": "wutongtree",
+  "version": "1.0.0",
+  "description": "项目之前需要安装（全局）一下：gulp,compass,sass,（按照依次顺序安装）\r 在本目录下 cmd(命令) 进入dos 执行：\r     npm install\r 之后执行：\r     gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ellis",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cache": "^0.4.6",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-file-include": "^1.1.0",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-plumber": "^1.1.0",
+    "imagemin-pngquant": "^5.0.0",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^4.0.2",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^3.0.0",
+    "node-sass": "^4.11.0",
+    "pump": "^1.0.2"
+  }
+}

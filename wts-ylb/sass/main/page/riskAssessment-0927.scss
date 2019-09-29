@@ -1,0 +1,519 @@
+@import "../../helper/_mixin.scss";
+@import "../../helper/_variables.scss";
+.riskAssessment-0927{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background: url("../../images/riskAssessment-0927/bg.png");
+    background-size: 100% 100%;
+    .alert{
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: r(400);
+        height: r(70);
+        border-radius: r(10);
+        text-align: center;
+        line-height: r(70);
+        background: rgba(0,0,0,0.3);
+        color: #fff;
+        font-size: r(30);
+        padding: 0;
+    }
+    .display_none{
+        display:none;
+    }
+    .display_block{
+        display:block;
+    }
+    .display_inline{
+        display: inline;
+    }
+    @mixin btn-style{
+        width: r(460);
+        height: r(80);
+        border-radius: r(40);
+        margin: 0 auto;
+        font-size: r(32);
+        text-align: center;
+        line-height: r(80);
+        color: #666;
+    }
+    @mixin mobile-select{
+        width: 100%;
+        height: r(80);
+        line-height: r(80);
+        border: r(2) solid #dcdcdc;
+        border-left: none;
+        border-right: none;
+        margin-top: r(42);
+        font-size: r(28);
+        color: #666;
+    }
+    @mixin sex-style{
+        width:r(126);
+        height:r(126);
+        border: r(2) solid #dcdcdc;
+        border-radius: 50%;
+        text-align: center;
+        overflow: hidden;
+    }
+    &>div{
+        width: 100%;
+        height: 100%;
+        background: url("../../images/riskAssessment-0927/bg2.png");
+        background-size: 100% 100%;
+        overflow-y: scroll;
+        .title{
+            height: r(67);
+            line-height: r(67);
+            font-size: r(46);
+            color: #fff;
+            font-weight: bold;
+            margin-top: r(60);
+            padding-left: r(68);
+        }
+        .sub_title{
+            padding-left: r(68);
+            line-height: r(51);
+            height: r(51);
+            font-size: r(28);
+            color: #fff;
+        }
+        .content{
+            width: r(640);
+            height: r(1005);
+            background: #fff;
+            border-radius: r(20);
+            margin: 0 auto;
+            margin-top: r(20);
+            overflow: hidden;
+            padding: 0 r(40);
+            margin-bottom: r(94);
+            .description{
+                &>span{
+                    font-size: r(28);
+                    color: #000;
+                    height: r(28);
+                    line-height: r(28);
+                }
+                .target{
+                    display: inline;
+                    .chosed{
+                        &>.icon{
+                            background: url("../../images/riskAssessment-0927/icon4.png");
+                            background-size: 100% 100%;
+                        }
+                        &>.text{
+                            color: #2d6dd0;
+                        }
+                    }
+                    .unchosed{
+                        &>.icon{
+                            background: url("../../images/riskAssessment-0927/icon3.png");
+                            background-size: 100% 100%;
+                        }
+                        &>.text{
+                            color: #666;
+                        }
+                    }
+                    &>div{
+                        display: inline-block;
+                        vertical-align: middle;
+                        &>.icon{
+                            width: r(22);
+                            height:r(22);
+                            margin-left: r(10);
+                        }
+                        &>.text{
+                            font-size: r(26);
+                            margin-left: r(6);
+                        }
+                        &>div{
+                            display: inline-block;
+                        }
+
+                    }
+                }
+            }
+            .btn{
+                @include btn-style;
+            }
+            .blue_btn{
+                background: #2d6dd0;
+                color: #fff;
+            }
+        }
+    }
+    .modal{
+        width:100%;
+        height:r(401);
+        padding: 0 r(40);
+        position: absolute;
+        bottom: 0;
+        background: #fff;
+        .btn{
+            @include btn-style;
+        }
+        .blue_btn{
+            background: #2d6dd0;
+            color: #fff;
+            margin-top: r(40);
+        }
+        .divider{
+            width: 100%;
+            height: r(2);
+            background: #dcdcdc;
+        }
+        .name{
+            height: r(115);
+            font-size: r(27);
+            color: #000;
+            line-height: r(115);
+            position: relative;
+            overflow: hidden;
+            &>.label{
+                display: inline-block;
+                width: r(173);
+            }
+            &>input{
+                height: r(115);
+                width: r(468); 
+                border: none;
+            }
+            &>.msg{
+                color: red;
+                position: absolute;
+                font-size: r(24);
+                line-height: r(24);
+                left: 0;
+                bottom: r(6);
+                width: auto;
+            }
+        }
+        .mobile{
+            height: r(117);
+            font-size: r(27);
+            color: #000;
+            line-height: r(117);
+            position: relative;
+            overflow: hidden;
+            &>.label{
+                display: inline-block;
+                width: r(173);
+            }
+            &>input{
+                height: r(117);
+                width: r(468); 
+                border: none;
+            }
+            &>.msg{
+                color: red;
+                position: absolute;
+                font-size: r(24);
+                line-height: r(24);
+                left: 0;
+                bottom: r(6);
+                width: auto;
+            }
+        }
+    }
+    .wrapper1{
+        background: url("../../images/riskAssessment-0927/bg_text.png");
+        background-size: 100% 100%;
+        position: relative;
+        .btn{
+            width: r(438);
+            height: r(116);
+            position: absolute;
+            bottom: r(113);
+            left: 50%;
+            transform: translateX(-50%);
+            &>img{
+                width:100%;
+                height: 100%;
+            }
+        }
+    }
+    .wrapper2{
+        .content{
+            .description{
+                margin-top: r(60);
+            }
+            .sex{
+                width: r(356);
+                height: r(202);
+                margin: 0 auto;
+                margin-top: r(36);
+                .focus{
+                    .text{
+                        color: #2d6dd0;
+                    }
+                    .pic{
+                        background: #2d6dd0;
+                    }
+                }
+                .man{
+                    .pic{
+                        @include sex-style;
+                        &>img{
+                            width: r(105);
+                            height: r(113);
+                            margin-top: r(13);
+                        }
+                    }
+                }
+                .woman{
+                    .pic{
+                        @include sex-style;
+                        &>img{
+                            width: r(85);
+                            height: r(107);
+                            margin-top: r(18);
+                        }
+                    }
+                }
+                &>div{
+                    width: r(126);
+                    height: r(202);
+                    float: left;
+                    &>.text{
+                        text-align: center;
+                        height: r(76);
+                        line-height: r(76);
+                        font-size: r(28);
+                        color: #000;
+                    }
+                }
+                .woman{
+                    margin-left: r(104);
+                }
+            }
+            .members{
+                width: r(605);
+                height: r(300);
+                margin-top: r(23);
+                overflow: hidden;
+                &>.item{
+                    width: r(166);
+                    height: r(74);
+                    float: left;
+                    border: r(2) solid #dcdcdc;
+                    border-radius: r(40);
+                    margin-right: r(30);
+                    margin-top:r(20);
+                    text-align: center;
+                    line-height: r(74);
+                    font-size: r(27);
+                    color: #666;
+                    &:nth-of-type(3n){
+                        margin-right: 0;
+                    }
+                }
+                &>.focus{
+                    color: #2d6dd0;
+                    border: r(2) solid #2d6dd0;;
+                }
+            }
+            .blue_btn{
+                margin-top: r(114);
+            }
+        }
+    }
+    .wrapper3{
+        .content{
+            .description{
+                margin-top: r(66);
+            }
+            .worktypes,.socialSec{
+                width: r(605);
+                height: r(300);
+                margin-top: r(23);
+                overflow: hidden;
+                &>.item{
+                    width: r(166);
+                    height: r(74);
+                    float: left;
+                    border: r(2) solid #dcdcdc;
+                    border-radius: r(40);
+                    margin-right: r(30);
+                    margin-top:r(20);
+                    text-align: center;
+                    line-height: r(74);
+                    font-size: r(27);
+                    color: #666;
+                    &:nth-of-type(3n){
+                        margin-right: 0;
+                    }
+                }
+                &>.focus{
+                    color: #2d6dd0;
+                    border: r(2) solid #2d6dd0;;
+                }
+            }
+            .socialSec{
+                height:r(100);
+            }
+            .blue_btn{
+                margin-top: r(161);
+            }
+        }
+    }
+    .wrapper4{
+        .content{
+            .birthday{
+                @include mobile-select;
+            }
+            .description{
+                margin-top: r(66);
+            }
+            .health_status{
+                width: r(605);
+                height: r(300);
+                margin-top: r(23);
+                overflow: hidden;
+                &>.item{
+                    width: r(166);
+                    height: r(74);
+                    float: left;
+                    border: r(2) solid #dcdcdc;
+                    border-radius: r(40);
+                    margin-right: r(30);
+                    margin-top:r(20);
+                    text-align: center;
+                    line-height: r(74);
+                    font-size: r(27);
+                    color: #666;
+                    &:nth-of-type(3n){
+                        margin-right: 0;
+                    }
+                }
+                &>.focus{
+                    color: #2d6dd0;
+                    border: r(2) solid #2d6dd0;;
+                }
+            }
+            .blue_btn{
+                margin-top: r(162);
+            }
+        }
+    }
+    .wrapper5{
+        .content{
+            .description{
+                margin-top: r(66);
+            }
+            .familyIncome,.familyDebt{
+                width: r(570);
+                height: r(80);
+                margin: 0 auto;
+                margin-top: r(42);
+                border-radius: r(40);
+                border: r(2) solid #dcdcdc;
+                overflow: hidden;
+                select {
+                /*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+                border: solid 1px #000;
+                /*很关键：将默认的select选择框样式清除*/
+                appearance:none;
+                -moz-appearance:none;
+                -webkit-appearance:none;
+                /*在选择框的最右侧中间显示小箭头图片*/
+                background: url("../../images/riskAssessment-0927/icon5.png") no-repeat r(522) center;
+                background-size: r(24) r(13);
+                /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+                padding-right: 14px;
+                }
+                /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+                select::-ms-expand { display: none; }
+                &>select{
+                    width: r(566);
+                    height: r(76);
+                    border: none;
+                    padding-left: r(56);
+                    color: #666;
+                    font-size: r(28);
+                    &>option{
+                        width: 100%;
+                        height: 100%;
+                        padding-left: r(56);
+                        color: #666;
+                        font-size: r(28);
+                    }
+                }
+            }
+            .blue_btn{
+                margin-top: r(363);
+            }
+        }
+    }
+    .wrapper6{
+        position: relative;
+        .content{
+            .description{
+                margin-top: r(264);
+            }
+            .location{
+                @include mobile-select;
+            }
+            .blue_btn{
+                margin-top: r(381);
+            }
+        }
+    }
+    .wrapper7{
+        .content{
+            position: absolute;
+            left:0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            &>div{
+                margin: 0 auto;
+            }
+            .pic{
+                width: r(138);
+                height: r(138);
+                margin-top: r(88);
+                img{
+                    width: r(138);
+                    height: r(138);
+                }
+            }
+            .result{
+                height: r(36);
+                line-height: r(36);
+                font-size: r(36);
+                color: #2d6dd0;
+                text-align: center;
+                margin-top: r(39);
+                margin-bottom: r(80);
+                font-weight: bold;
+            }
+            .text{
+                text-align: center;
+                font-size: r(27);
+                height: r(27);
+                line-height: r(27);
+                margin-bottom: r(10);
+                &>span{
+                    font-weight: bold;
+                }
+            }
+            .qr_code{
+                width: r(430);
+                height: r(430);
+                margin-top: r(29);
+                img{
+                    width: r(430);
+                    height: r(430);
+                }
+            }
+        }
+    }
+}

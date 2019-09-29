@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!--顶部css-->
+        @@include("include/header.htm",{
+        "title":"分享到浏览器打开",
+        "keywords": "分享到浏览器打开",
+        "description": ""
+        })
+    </head>
+
+    <body>
+        <!--页面加载动画-->
+        <!-- @@include("include/ready-ani.htm") -->
+        <div class="body-container YLB_payLead" style="width:100%;height:100vh;background:#fff;">
+            <img class="copyUrl" src="@@webRoot/lib/images/payLead.jpg" style="width: 100%;" alt="">
+        </div>
+        @@include("include/footer.htm")
+    </body>
+    <script>
+        $(function () {
+            var url = location.href.split("payUrl=")[1]
+
+            if (url) {
+                //微信环境
+                if ($.tools().isWeiXin() || $.tools().isAL()) {
+                    return;
+                }
+                location.href = url;
+            }
+        })
+    </script>
+
+</html>

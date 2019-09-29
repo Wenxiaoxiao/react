@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"", "keywords": "", "description": "" })
+    <link rel="stylesheet" href="@@webRoot/lib/css/page/sdxzdp-0926.css">
+</head>
+
+<body>
+    <!--页面加载动画-->
+    
+    <div class="body-container sdxzdp-0926">
+        <div class="modal display_hide">
+            <div class="pop_pic">
+                <img src="@@webRoot/lib/images/YLB/howmany/pop1.png"/>
+                <div class="close_btn"></div>
+            </div>
+        </div>
+        @@include("include/float_btn.htm",{ "top":"342"})
+        <div class="advisory_img">
+            <div class="wrapper">
+                <div class="center1"><img  src="@@webRoot/lib/images/sdxzdp-0926/1.png"/></div>
+                <div class="center2"><img  src="@@webRoot/lib/images/sdxzdp-0926/2.png"/></div>
+                <div class="center3"><img  src="@@webRoot/lib/images/sdxzdp-0926/3.png"/></div>
+                <div class="center4"><img  src="@@webRoot/lib/images/sdxzdp-0926/4.png"/></div>
+                <div class="center5"><img  src="@@webRoot/lib/images/sdxzdp-0926/5.png"/></div>
+                <div class="center6"><img  src="@@webRoot/lib/images/sdxzdp-0926/6.png"/></div>
+                <div class="center7"><img  src="@@webRoot/lib/images/sdxzdp-0926/7.png"/></div>
+                <div class="center8"><img  src="@@webRoot/lib/images/sdxzdp-0926/8.png"/></div>
+                <div class="center9"><img  src="@@webRoot/lib/images/sdxzdp-0926/9.png"/></div>
+            </div>
+        </div>
+    </div>
+    @@include("include/footer-yunying.htm")
+
+</body>
+<script>
+$(".sdxzdp-0926").height(window.innerHeight);
+$('.modal_pop').click(function(){
+    $(".modal").fadeIn()
+})
+$(".close_btn").click(function () {
+    $(".modal").hide()
+})
+</script>
+
+</html>

@@ -1,0 +1,168 @@
+html,body{
+    height:100%;
+}
+.YLB_advisory{
+    height:100%;
+    overflow: hidden;
+    position: relative;
+    .display_hide{
+        display:none;
+    }
+    .display_show{
+        display:block;
+    }
+    .modal{
+        width:100%;
+        height:100%;
+        position: absolute;
+        z-index:99;
+        background:rgba(101,101,101,0.8);
+        top:0;
+        left:0;
+        .pop_pic{
+            background: url("../images/YLB/advisory/pop.png");
+            width:r(528);
+            height:r(656);
+            background-size:100% 100%;
+            margin:0 auto;
+            margin-top:r(348);
+            position: relative;
+            .close_btn{
+                width:r(42);
+                height:r(42);
+                background: url("../images/YLB/advisory/close.png");
+                background-size:100% 100%;
+                position: absolute;
+                right:r(33);
+                top:r(59);
+                cursor: pointer;
+            }
+        }
+    }
+    .advisory{
+        background:url("../images/YLB/advisory/lianxi.png");
+        background-size:100% 100%;
+        width:r(85);
+        height:r(260);
+        position: absolute;
+        z-index: 9;
+        left:r(679);
+        top:r(514);
+        cursor: pointer;
+    }
+    .advisory_img{
+        width:100%;
+        height:100%;
+        position: relative;
+        overflow: auto;
+        .wrapper{
+            position: relative;
+            background:#1d0076;
+            img{
+                width:100%;
+                border:none;
+                display: block;
+            }
+            .center1{
+                position: relative;
+                .text{
+                    height:r(558);
+                    position: absolute;
+                    bottom:r(2);
+                    padding-left:r(236);
+                    &>span{
+                        display:block;
+                        white-space: nowrap;
+                        line-height:r(58);
+                        height:r(58);
+                        margin-bottom:r(10);
+                        font-size:r(24);
+                        color:#404040;
+                    }
+                    .esp{
+                        margin-bottom:r(0);
+                    }
+                }
+            }
+            .foot_btn{
+                background:url("../images/YLB/advisory/zixun.png");
+                background-size:100% 100%;
+                width:r(600);
+                height:r(113);
+                position: fixed;
+                bottom:r(11);
+                left:r(80);
+                cursor: pointer;
+            }
+            .header{
+                position: relative;
+                .text{
+                    position: absolute;
+                    bottom:r(307);
+                    line-height:r(40);
+                    font-size:r(24);
+                    color:#404040;
+                    padding:r(0) r(82);
+                }
+                .people{
+                    position: absolute;
+                    bottom:r(138);
+                    width:100%;
+                    padding:0 r(60);
+                    &>div{
+                        width:33.33%;
+                        height:r(138);
+                        float:left;
+                    }
+                    .people1{
+                        background:url("../images/YLB/advisory/people1.png") center center no-repeat;
+                        background-size:r(138) r(138);
+                    }
+                    .people2{
+                        background:url("../images/YLB/advisory/people2.png") center center no-repeat;
+                        background-size:r(138) r(138);
+                    }
+                    .people3{
+                        background:url("../images/YLB/advisory/people3.png") center center no-repeat;
+                        background-size:r(138) r(138);
+                        margin-right:0;
+                    }
+                }
+                .describe{
+                    height:r(78);
+                    width:100%;
+                    padding:0 r(60);
+                    position: absolute;
+                    bottom:r(60);
+                    &>div{
+                        width:33.33%;
+                        height:r(78);
+                        float:left;
+                        text-align: center;
+                        &>b{
+                            line-height:r(50);
+                            font-size:r(24);
+                            display:inline-block;
+                            width:r(76);
+                            letter-spacing: r(10);
+                        }
+                        &>span{
+                            color:#424242;
+                            font-size:r(12);
+                            display:block;
+                        }
+                    }
+                    .people3>span{
+                        margin-left:r(-20);
+                        white-space: nowrap;
+                    }
+                    .people1{
+                        &>b{
+                            letter-spacing:normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

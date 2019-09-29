@@ -1,0 +1,185 @@
+@import "variables";
+
+/*多属性传递
+ex:
+@include px2rems((font-size: 28,height: 90,line-height: 90,padding-left: 20,padding-right: 20));
+font-size: 0.37333rem;
+height: 1.2rem;
+line-height: 1.2rem;
+padding-left: 0.26667rem;
+padding-right: 0.26667rem;
+*/
+@mixin px2rems($pxs){
+  @each $key, $value in $pxs{
+    #{$key}: $value/$baseFontSize * 1rem;
+  }
+}
+@function r($px){//$px为需要转换的字号
+  @return $px / $baseFontSize * 1rem;
+}
+/* 属性多值传递
+ex:
+@include remCalc(padding,10,20);
+padding: 0.13333rem 0.26667rem;*/
+@mixin remCalc($property, $values...) {
+  $max: length($values);
+  $remValues: '';
+  @for $i from 1 through $max {
+    $value: nth($values, $i);
+    $remValues: #{$remValues + $value/$baseFontSize}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  }
+  #{$property}: $remValues;
+}
+
+
+/*按钮纯色系*/
+@mixin button-variant($color, $background) {
+  $active-background: darken($background, 10%);
+  $active-color: darken($color, 10%);
+
+  color: $color;
+  background-color: $background;
+
+  // Hover and focus styles are shared
+  &:hover, &:focus{
+    color: $active-color;
+    background-color: $active-background;
+  }
+}
+/*按钮边框色系*/
+@mixin button-line($color) {
+  color: $color;
+  background-color: #fff;
+  border: 1px solid $color;
+
+  // Hover and focus styles are shared
+  &:hover, &:focus{
+    color: #fff;
+    background-color: $color;
+    border: 1px solid $color;
+  }
+}
+
+
+/*按钮大小*/
+@mixin button-size($width, $height, $font-size, $line-height, $border-radius) {
+  width: $width;
+  height: $height;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+/*标题*/
+@mixin titles($width,$height,$font-size,$color,$pad-left){
+  width: $width;
+  height: $height;
+  font-size: $font-size;
+  line-height: $height;
+  color: $color;
+  padding-left: $pad-left;
+}
+
+/*小消息标签*/
+@mixin tips($padding,$sj-width,$font-size,$baccolor,$radius){
+  font-size: $font-size;
+  line-height: 1;
+  padding: $padding;
+  background-color: $baccolor;
+  position: relative;
+  color: #fff;
+  border-radius: $radius;
+  &::before{
+    content: '';
+    position: absolute;
+    left: -$sj-width*2;
+    top: 50%;
+    margin-top: -$sj-width;
+    width: 0;
+    height: 0;
+    border: $sj-width solid transparent;
+    border-right-color: $baccolor;
+  }
+}
+
+//单选框
+@mixin radio-variant($width,$border-radius) {
+
+  position: relative;
+  display: inline-block;
+  -webkit-appearance: none;
+  width: $width;
+  height: $width;
+  background-color: transparent;
+  border: none;
+
+  // before
+  &:before{
+    content: "\e623";
+    display: inline-block;
+    font-family:"iconfont" !important;
+    font-size: $width*0.6;
+    line-height: $width;
+    text-align: center;
+    width: $width;
+    height: $width;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    color: #fff;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: $border-radius;
+  }
+}
+//单选框选中状态
+@mixin radio-checked($background) {
+  // checked
+  &:checked::before{
+    background-color: $background;
+    border: 1px solid $background;
+  }
+}
+
+
+//多选框
+@mixin checkbox-variant($width,$background,$border-radius) {
+
+  position: relative;
+  -webkit-appearance: none;
+  width: $width;
+  height: $width;
+  background-color: transparent;
+  border: none;
+
+  // before
+  &:before{
+    content: "\e64e";
+    display: inline-block;
+    font-family:"iconfont" !important;
+    font-size: $width*0.6;
+    line-height: $width;
+    text-align: center;
+    width: $width;
+    height: $width;
+    background-color: #fff;
+    color: transparent;
+    border: 1px solid #ccc;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: $border-radius;
+  }
+  // checked
+  &:checked::before{
+    color:$background;
+    background-color: #fff;
+    border: 1px solid $background;
+  }
+}

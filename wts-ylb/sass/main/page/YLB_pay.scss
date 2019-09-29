@@ -1,0 +1,135 @@
+.YLB_pay {
+    height: 100vh;
+    background: url(../images/YLB/p1.jpg) no-repeat center top;
+    background-size: 100% auto;
+    .pay_content {
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        width: r(640);
+        height: r(810);
+        margin-top: r(-405);
+        margin-left: r(-320);
+        background: url(../images/YLB/p4.png) no-repeat center top;
+        background-size: 100% auto;
+        padding-top: r(120);
+        &.sus {
+            background: url(../images/YLB/p44.png) no-repeat center top;
+            background-size: 100% auto;
+        }
+        .pay_pic {
+            position: absolute;
+            top: r(-120);
+            left: 50%;
+            margin-left: r(-120);
+            width: r(240);
+            img {
+                width: 100%;
+                display: block;
+            }
+        }
+        .pay_title {
+            text-align: center;
+            color: #45b8dd;
+            font-size: r(46);
+        }
+        .sus_title {
+            text-align: center;
+            color: #000;
+            font-size: r(42);
+            font-weight: 900;
+            letter-spacing: r(1);
+        }
+        .pay_desc {
+            font-size: r(32);
+            text-align: center;
+            margin-top: r(25);
+        }
+        .sus_desc {
+            margin-top: r(10);
+            font-size: r(27);
+            text-align: center;
+            line-height: r(54);
+        }
+        .sus_Less {
+            width: r(564);
+            display: inline-block;
+            text-align: center;
+            margin-top: r(15);
+            img {
+                width: 100%;
+            }
+        }
+        .pay_info {
+            margin-top: r(130);
+            text-align: center;
+            .price {
+                font-size: r(60);
+                color: #ff7920;
+                font-weight: 900;
+            }
+            .paybtn {
+                margin-top: r(70);
+                span {
+                    display: inline-block;
+                    width: r(425);
+                    height: r(90);
+                    background: url(../images/YLB/p3.jpg) no-repeat center top;
+                    background-size: 100% auto;
+                    color: #fff;
+                    font-size: r(32);
+                    line-height: r(90);
+                    border-radius: r(45);
+                }
+            }
+            .success_btns{
+                margin-top: r(150);
+            }
+        }
+        .sus_info {
+            margin-top: r(130);
+            display: flex;
+            justify-content: center;
+            .erweima {
+                width: r(220);
+                img {
+                    width: 100%;
+                }
+            }
+            .sus_info_desc {
+                padding-top: r(13);
+                margin-left: r(10);
+                p {
+                    font-size: r(26);
+                    text-align: left;
+                    line-height: r(48);
+                    &.active {
+                        color: #f5a623;
+                    }
+                }
+            }
+        }
+        .pay_type {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #e8e8e8;
+            text-align: center;
+            line-height: r(90);
+            font-size: r(28);
+            color: #4d4d4d;
+            border-radius: 0 0 r(15) r(15);
+            .icon-tijiaochenggong {
+                color: #3c99d6;
+                font-size: r(40);
+                margin-right: r(20);
+                vertical-align: middle;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+}

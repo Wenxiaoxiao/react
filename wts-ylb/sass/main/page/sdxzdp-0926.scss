@@ -1,0 +1,61 @@
+@import "../../helper/_mixin.scss";
+@import "../../helper/_variables.scss";
+.sdxzdp-0926{
+    overflow: hidden;
+    position: relative;
+    .display_hide{
+        display:none;
+    }
+    .display_show{
+        display:block;
+    }
+    .modal{
+        width:100%;
+        height:100%;
+        position: absolute;
+        z-index:99;
+        background:rgba(101,101,101,0.8);
+        top:0;
+        left:0;
+        .pop_pic{
+            width:r(528);
+            height:r(656);
+            background-size:100% 100%;
+            margin:0 auto;
+            margin-top:r(348);
+            position: relative;
+            img{
+                width:100%;
+                height:100%;
+            }
+            .close_btn{
+                width:r(42);
+                height:r(42);
+                background: url("../../images/YLB/howmany/close.png");
+                background-size:100% 100%;
+                position: absolute;
+                right:r(33);
+                top:r(59);
+                cursor: pointer;
+            }
+        }
+    }
+    .advisory_img{
+        width:100%;
+        height:100%;
+        position: relative;
+        overflow: auto;
+        .wrapper{
+            position: relative;
+            background:#1d0076;
+            &>div{
+                margin-top:r(-1);
+            }
+            img{
+                width:100%;
+                border:none;
+                display: block;
+            }
+        }
+    }
+}

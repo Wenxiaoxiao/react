@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!--顶部css-->
+        @@include("include/header.htm",{
+        "title":"我的定制",
+        "keywords": "我的定制",
+        "description": ""
+        })
+    </head>
+
+    <body>
+        <!--页面加载动画-->
+        <!-- @@include("include/ready-ani.htm") -->
+        <div class="body-container YLB_orderList">
+            <div class="succ_ter">
+                <div class="suc_bos">
+                    <div class="suc_ters">
+                        <div class="erweima"><img src="@@webRoot/lib/images/YLB/p6.jpg" alt=""></div>
+                        <img src="@@webRoot/lib/images/YLB/ter.png" alt="">
+                        <div class="guihuashiWx">
+                            <div class="guihuashiWx1"></div>
+                            <div class="guihuashiWx2"></div>
+                        </div>
+                        <span class="closeBtn"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list">
+
+            </div>
+            <div class="info">
+                <div class="title clearfix"><img src="@@webRoot/lib/images/YLB/o1.png" alt=""><span>服务流程</span></div>
+                <div class="content">
+                    <div class="content_bar"></div>
+                    <div class="item_list">
+                        <div class="item clearfix">
+                            <div class="number">1</div>
+                            <div class="item_content">支付成功</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">2</div>
+                            <div class="item_content">添加远虑保助理微信:18163358504</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">3</div>
+                            <div class="item_content">规划师在线或电话和您沟通(确认您的基本信息)</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">4</div>
+                            <div class="item_content">进行保障方案定制</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">5</div>
+                            <div class="item_content">在线或电话进行方案解读和调整</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">6</div>
+                            <div class="item_content">确认保障方案</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">7</div>
+                            <div class="item_content">协助核保投保</div>
+                        </div>
+                        <div class="item clearfix">
+                            <div class="number">8</div>
+                            <div class="item_content">理赔全程协助</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @@include("include/footer.htm")
+        <script type="text/html" id="nodata">
+            <div class="pay_content">
+                <div class="pay_pic"><img src="@@webRoot/lib/images/YLB/p2.png" alt=""></div>
+                <div class="pay_title active">对不起,您还没有定制过方案!</div>
+                
+                <div class="pay_info">
+                    <div class="paybtn active"><span>立即定制</span></div>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/html" id="orderList">
+            {{each data as item}}
+                <div class="item" orderId="{{item.id}}">
+                    <div class="title">{{item.title}}</div>
+                    <div class="desc">
+                        <div class="left">
+                            <p class="p1">我的私人定制方案</p>
+                            {{if item.status == 2}}
+                            <p class="p2">点击查看</p>
+                            {{else}}
+                            <p class="p2">支付未完成 点击继续</p>
+                            {{/if}}
+                            
+                        </div>
+                        {{if item.status == 2}}
+                        <div class="right active">定制成功</div>
+                        {{else}}
+                        <div class="right">等待定制</div>
+                        {{/if}}
+                        
+                    </div>
+
+                    <div class="zhuli clearfix"><span class="zhuli_title">点击查看规划师微信</span><span class="icons_info"><i class="icon icon-erweima"></i><i class="icon icon-jiantouzuo-copy"></i></span></div>
+                </div>
+            {{/each}}
+        </script>
+    </body>
+    <script>
+        $(function () {
+            var login = new YlbLogin()
+            login.init(function (user) {
+
+                if (!user) {
+                    return;
+                }
+                var YLB_orderList = {
+                    getOrderList: function () {
+                        var self = this;
+                        $.ajaxPackage({
+                            type: "get",
+                            url: "/yuanlv/order/api/list?userId=" + user.id + "&pageSize=500",
+                            contentType: "application/json",
+                            async: true,
+                            success: function (data, isError) {
+                                if (!isError) {
+                                    return;
+                                };
+
+                                if (data.data.length > 0) {
+                                    $.ajaxPackage({
+                                        type: "post",
+                                        url: "/farmind/qrCode/api/getInfo",
+                                        data: JSON.stringify({}),
+                                        contentType: "application/json",
+                                        async: true,
+                                        success: function (orderDetail, orderErr) {
+                                            if (!orderErr) {
+                                                return;
+                                            };
+
+                                            if (orderDetail.data && orderDetail.data.qrCode && orderDetail.data.qrCode.length > 2) {
+                                                $(".erweima img").attr("src", JSON.parse(orderDetail.data.qrCode)[0].url)
+                                            }
+                                            $(".guihuashiWx .guihuashiWx1").html("规划师微信号:"+orderDetail.data.name.split(":")[1].split(")")[0]);
+                                            $(".guihuashiWx .guihuashiWx2").html("规划师手机号:"+orderDetail.data.mobile);
+
+                                            var orderList = template("orderList", data); //模板渲染
+                                            $(".YLB_orderList .list").html(orderList);
+
+                                            //定制详情的点击事件
+                                            $(".item .desc").click(function () {
+                                                var orderId = $(this).parent().attr("orderId");
+                                                window.location.href = "./YLB_orderDetail.html?orderId=" + orderId;
+                                            })
+
+                                            //立即定制的点击事件
+                                            $(".pay_info .paybtn span").click(function () {
+                                                window.location.href = "./YLB_index.html";
+                                            })
+
+                                            //助理微信的点击事件
+                                            $(".zhuli").click(function () {
+                                                self.showMask();
+                                            })
+
+                                            $(".closeBtn").click(function () {
+                                                self.hideMask();
+                                            })
+                                        }
+                                    })
+                                } else {
+                                    $(".YLB_orderList").css({ "background": "url(@@webRoot/lib/images/YLB/b12.jpg) no-repeat center top", "background-size": "100% auto" })
+                                    var nodata = template("nodata", data); //模板渲染
+                                    $(".YLB_orderList").html(nodata);
+                                }
+
+                            }
+                        })
+                    },
+                    showMask: function () {
+                        $(".succ_ter").fadeIn()
+                    },
+                    hideMask: function () {
+                        $(".succ_ter").hide()
+                    }
+                }
+
+                YLB_orderList.getOrderList();
+            })
+        })
+    </script>
+
+</html>

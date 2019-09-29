@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"", "keywords": "", "description": "" })
+    <link rel="stylesheet" href="@@webRoot/lib/css/page/dyfbx-0925.css">
+</head>
+
+<body>
+    <div class="body-container">
+        <div class="modal">
+            <div class="pop_pic">
+                <img src="@@webRoot/lib/images/YLB/howmany/pop1.png"/>
+                <div class="close_btn"></div>
+            </div>
+        </div>
+        <img src="@@webRoot/lib/images/dyfbx-0925/1.jpg" class="img-c"/>
+        <img src="@@webRoot/lib/images/dyfbx-0925/2.jpg" class="img-c"/>
+        <img src="@@webRoot/lib/images/dyfbx-0925/3.jpg" class="img-c"/>
+        <img src="@@webRoot/lib/images/dyfbx-0925/4.jpg" class="img-c"/>
+        <img src="@@webRoot/lib/images/dyfbx-0925/5.jpg" class="img-c"/>
+        <img src="@@webRoot/lib/images/dyfbx-0925/6.jpg" class="img-c"/>
+        @@include("include/float_btn.htm")
+    </div>
+    
+    
+
+</body>
+@@include("include/footer-yunying.htm")
+<script>
+$('.modal_pop').click(function(){
+    $(".modal").fadeIn()
+})
+$(".close_btn").click(function () {
+    $(".modal").hide()
+})
+</script>
+
+</html>

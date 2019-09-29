@@ -1,0 +1,105 @@
+.body-container {
+  height: 100%;
+}
+// .layer-box{
+//     display: none;
+.lz-mask-box {
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+//推广系统短信弹窗
+.lz-layers-virify {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  .virifyBox {
+    position: relative;
+    width: 90%;
+    height: r(480);
+    background-color: #fff;
+    margin: 50% auto 0;
+    border-radius: 8px;
+    .content-p {
+      height: r(188);
+      background: url("../images/vir-bg.png") no-repeat;
+      background-size: 100%;
+      border-bottom: 1px solid #f8ebde;
+      border-radius: 8px;
+      p {
+        font-size: r(36);
+        text-align: center;
+        &:first-child {
+          padding-top: r(50);
+        }
+      }
+      .color-red{
+        color: red;
+      }
+    }
+    .content-input {
+      padding: r(40) r(50) r(30);
+      .input-section {
+        height: r(90);
+        line-height: r(90);
+        font-size: r(32);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        input {
+          width: 100%;
+          border: none;
+          height: 100%;
+          padding-left: r(20);
+        }
+        .clickevt {
+          display: inline-block;
+          width: r(160);
+          text-align: center;
+          color: #ff6600;
+        }
+      }
+    }
+    .content-btn {
+      .btn {
+        display: block;
+        width: r(395);
+        height: r(90);
+        line-height: r(90);
+        font-size: r(32);
+        color: #fff;
+        margin: 0 auto;
+        background-color: #ff6600;
+        border: 1px solid #eee;
+        text-align: center;
+        border-radius: 10px;
+      }
+    }
+    .vir-close {
+      width: r(67);
+      height: r(67);
+      position: absolute;
+      top: r(-100);
+      right: r(10);
+      &::after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: r(35);
+        left: 50%;
+        margin-left: r(-1.5);
+        bottom: r(-33);
+        background-color: #ff6600;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+// }

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"", "keywords": "", "description": "" })
+    <link rel="stylesheet" href="@@webRoot/lib/css/swiper.min.css">
+</head>
+
+<body>
+    <!--页面加载动画-->
+    
+    <div class="body-container YLB_advisory">
+        <div class="modal display_hide">
+            <div class="pop_pic">
+                <div class="close_btn"></div>
+            </div>
+        </div>
+        <div class="advisory modal_pop"></div>
+        <div class="advisory_img">
+            <div class="wrapper">
+                <div class="header">
+                    <img  src="@@webRoot/lib/images/YLB/advisory/header.png"/>
+                    <div class="text">本课程由保险研究院联合知名高校学者联合制作，正确理性的理解保险，拒绝被忽悠，不花一分冤枉钱。</div>
+                    <div class="people">
+                        <div class="people1"></div>
+                        <div class="people2"></div>
+                        <div class="people3"></div>
+                    </div>
+                    <div class="describe">
+                        <div class="people1">
+                            <b>潘国臣</b>
+                            <span>武大经管学院教授</span>
+                        </div>
+                        <div class="people2">
+                            <b>陈华</b>
+                            <span>经济学博士</span>
+                        </div>
+                        <div class="people3">
+                            <b>袁辉</b>
+                            <span>中南财大金融学院教授</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="center1">
+                    <img  src="@@webRoot/lib/images/YLB/advisory/center0.png"/>
+                    <!-- <div class="text">
+                        <span>四个保险误区，每个人都要知道</span>
+                        <span>四类常见险种对比，有何不同？</span>
+                        <span>10分钟让保险条款通俗易懂</span>
+                        <span>重疾险的挑选要点</span>
+                        <span>医疗险的挑选要点</span>
+                        <span>意外险的挑选要点</span>
+                        <span>买了保险，如何顺利理赔？</span>
+                        <span class="esp">癌症与保险，这些真相你应该知道</span>
+                    </div> -->
+                </div>
+                <div class="center2"><img  src="@@webRoot/lib/images/YLB/advisory/center2.png"/></div>
+                <div class="center3"><img  src="@@webRoot/lib/images/YLB/advisory/center3.png"/></div>
+                <div class="center4"><img  src="@@webRoot/lib/images/YLB/advisory/center4.png"/></div>
+                <div class="center5"><img  src="@@webRoot/lib/images/YLB/advisory/center5.png"/></div>
+                <div class="center6"><img  src="@@webRoot/lib/images/YLB/advisory/center6.png"/></div>
+                <div class="footer"><img  src="@@webRoot/lib/images/YLB/advisory/footer.png"/></div>
+                <div class="foot_btn modal_pop"></div>
+            </div>
+        </div>
+    </div>
+    
+<!--模板引擎-->
+<script src="./lib/js/template.js"></script>
+<script src="./lib/js/layer.js"></script>
+<!--template辅助函数-->
+<script src="./lib/js/helper.js?v=1569202231663"></script>
+<!-- 微信jssdk -->
+<script src="./lib/js/jweixin-1.4.0.js"></script>
+<script src="./lib/js/units.js?v=1569202231663"></script>
+<script src="./lib/js/jquery.cookie.js"></script>
+<script src="./lib/js/userLogin.js?v=1569202231663"></script>
+
+</body>
+<script>
+$('.modal_pop').click(function(){
+    $(".modal").fadeIn()
+})
+$(".close_btn").click(function () {
+    $(".modal").hide()
+})
+</script>
+
+</html>

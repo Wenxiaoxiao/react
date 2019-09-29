@@ -1,0 +1,14 @@
+.body-404{
+  background-color: #f1f7f9;
+
+  .topimg{
+    width: 100%;
+    @include remCalc(height,584);
+    background: url("../images/bac-404.png") top no-repeat;
+    background-size: contain;
+  }
+  p{
+    margin-top: 20px;
+    text-align: center;
+  }
+}

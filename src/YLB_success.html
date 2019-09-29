@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"我的方案", "keywords": "我的方案", "description": "" })
+</head>
+
+<body>
+    <!--页面加载动画-->
+    <!-- @@include("include/ready-ani.htm") -->
+    <div class="body-container YLB_success">
+        <div class="suc_content">
+            <img src="@@webRoot/lib/images/YLB/dz_bg.png" alt="" class="suc_Bg">
+            <div class="s_content">
+                <div class="s_top">
+                    <p>保障方案私人定制 <span class="rig"><i class="iconfont icon-naozhong"></i><i class="times">2019-06-03</i></span></p>
+                </div>
+                <div class="s_top1">
+                    <img src="@@webRoot/lib/images/YLB/susLess.png" alt="">
+                </div>
+                <div class="s_top2">
+                    <img src="@@webRoot/lib/images/YLB/dz_success.png" alt="">
+                    <div class="pos1">
+                        <p class="p1">我的私人定制方案</p>
+                        <p class="p2">点击查看</p>
+                    </div>
+                </div>
+                <div class="s_bottom">
+                    <div class="s_Next">
+                        <span>点击查看规划师微信</span>
+                        <i class="iconfont icon-jiantouzuo-copy fr"></i>
+                        <i class="iconfont icon-erweima fr"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @@include("include/footer.htm")
+</body>
+<script>
+    $(function() {
+        var login = new YlbLogin()
+        login.init(function(user) {
+
+
+        })
+    })
+</script>
+
+</html>

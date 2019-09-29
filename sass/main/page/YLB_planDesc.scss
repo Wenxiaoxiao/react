@@ -1,0 +1,127 @@
+.YLB_planDesc{
+    height: 100vh;
+    background: #fff;
+    overflow: auto;
+    position: relative;
+    padding-bottom: r(100);
+    .title{
+        position: relative;
+        .title01{
+            width: 100%;
+            height: r(150);
+            background:url(../images/YLB/b1.jpg) no-repeat;
+                background-size: 100% 100%;
+        }
+        .title_pic{
+            width: r(240);
+            position: absolute;
+            top: r(20);
+            left: 50%;
+            margin-left: r(-120);
+            img{
+                width: 100%;
+                display: block;
+            }
+        }
+        .title02{
+            margin-top: r(30);
+            line-height: r(150);
+            font-size: r(34);
+            color: #3990d4;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: r(1);
+        }
+        .title03{
+            padding:0 r(30);
+            .title03_desc{
+                border-bottom: 1px solid #ccc;
+                padding-bottom: r(30);
+            }
+            .left{
+                width: r(42);
+                float: left;
+                margin-top: r(5);
+                img{
+                width: 100%;
+                display: block;
+            }
+            }
+            .right{
+                margin-left: r(20);
+                float: left;
+                .p1{
+                    font-size: r(30);
+                    color: #4a4a4a;
+                }
+                .p2{
+                    margin-top: r(10);
+                    font-size: r(25);
+                    color: #9b9b9b;
+                }
+            }
+        }
+    }
+    .content{
+        padding: 0 r(30);
+        font-size: r(26);
+        position: relative;
+        .item_list{
+            position: relative;
+            z-index: 1;
+        }
+        .content_bar{
+            width: r(4);
+            height: 100%;
+            background: #f2f3f5;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: r(50);
+            z-index: 0;
+        }
+        .item{
+            width: 100%;
+            margin-top: r(40);
+            .number{
+                float: left;
+                width: r(40);
+                height: r(40);
+                background: #3990d4;
+                border-radius: 50%;
+                color: #fff;
+                line-height: r(40);
+                text-align: center;
+            }
+            .item_content{
+                float: left;
+                margin-left: r(15);
+            }
+        }
+    }
+    .footer{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background:url(../images/YLB/b5.png) no-repeat;
+        background-size: 100% 100%;
+        z-index: 10;
+        .footer_btn{
+            float: left;
+            font-size: r(34);
+            color: #fff;
+            text-align: center;
+            line-height: r(100);
+            letter-spacing: r(1);
+            font-weight: 900;
+
+        }
+        .price{
+            width: 36%;
+        }
+        .pay{
+            width: 64%;
+        }
+    }
+}

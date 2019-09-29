@@ -1,0 +1,45 @@
+<script id="fromHtml" type="text/html">
+    {{each data as val i}}
+    <!-- 日期选择 -->
+    {{if val.type==1}}
+    <div class="qm-change qm-input-text clearfix">
+        <span class="fl labeltxt" >{{val.name}}</span>
+        <div class="box-right fl">
+            <input class="beginTime like-input" id="{{val.id}}" placeholder="请选择{{val.name}}">
+        </div>
+    </div>
+    <!-- 输入框 -->
+    {{else if val.type==2}}
+    <div class="qm-change qm-input-text clearfix">
+        <span class="fl labeltxt">{{val.name}}</span>
+        <div class="box-right fl">
+            <input type="text" class="changes" id="{{val.id}}" placeholder="请输入{{val.name}}">
+        </div>
+    </div>
+    <!-- 电话号码 -->
+    {{else if val.type==3}}
+    <div class="qm-change qm-input-text clearfix">
+        <span class="fl labeltxt">{{val.name}}</span>
+        <div class="box-right fl">
+            <input type="tel" class="changes" id="{{val.id}}" placeholder="请输入{{val.name}}">
+        </div>
+    </div>
+    <!-- 单选 -->
+    {{else if val.type==4}}
+    <div class="qm-change qm-input-radio clearfix">
+        <span class="fl labeltxt margin-right-30">{{val.name}}</span>
+        <div class="box-right fl" value="">
+            {{each val.items as item n}}
+            <label class="radio-inline">
+                {{if n==0}}
+                <input type="radio" class="lz-radio {{val.id}}" name="{{val.id}}" checked='checked' value="{{item.value}}"> {{item.value}}
+                {{else}}
+                <input type="radio" class="lz-radio {{val.id}}" name="{{val.id}}" value="{{item.value}}"> {{item.value}}
+                {{/if}}
+            </label>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{/each}}
+</script>

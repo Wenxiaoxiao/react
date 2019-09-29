@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"保险小白系列避坑课", "keywords": "快速了解保险常识和套路，不花冤枉钱", "description": "快速了解保险常识和套路，不花冤枉钱" })
+    <link rel="stylesheet" href="@@webRoot/lib/css/page/YLB_course.css">
+</head>
+<body>
+    <div class="body-container YLB_course">
+        <div class="cover_pic display_hide"><img src="@@webRoot/lib/images/course/cover_pic.jpg"/></div>
+        <div class="modal display_hide">
+            <div class="pop_pic">
+                <img src="@@webRoot/lib/images/course/pop2.png"/>
+                <img src="" class="qr_code"/>
+                <div class="close_btn"></div>
+            </div>
+        </div>
+        <div class="advisory modal_pop">
+            <img src="@@webRoot/lib/images/course/advisory.png">
+        </div>
+        <div class="course_img">
+            <div class="wrapper">
+                <div class=""><img  src="@@webRoot/lib/images/course/1.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/2.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/3.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/4.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/5.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/6.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/7.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/8.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/9.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/10.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/11.png"/></div>
+                <div class=""><img  src="@@webRoot/lib/images/course/12.png"/></div>
+            </div>
+        </div>
+    </div>
+</body>
+@@include("include/footer-yunying.htm")
+<script>
+$(function () {
+    $.shareWx({
+        title: "保险小白系列避坑课",
+        desc: '快速了解保险常识和套路，不花冤枉钱。',
+        img:'https://bx.wts999.com/m/ylb/lib/images/course/cover_pic.jpg',
+    });
+})
+$(".YLB_course").height(window.innerHeight);
+$('.modal_pop').click(function(){
+    $.ajaxPackage({
+        type: "get",
+        url: "/yuanlv/common/api/param?key=spreadQrCode",
+        contentType: "application/json",
+        async: true,
+        success: function (data, isError) {
+            // console.log(data);
+            // console.log(isError);
+            if (!isError) {
+                return;
+            };
+            if(data.httpCode === 200){
+                $(".qr_code").attr("src",data.data);
+            }
+        }
+    })
+    $(".modal").fadeIn()
+})
+$(".close_btn").click(function () {
+    $(".modal").hide()
+})
+</script>
+</html>

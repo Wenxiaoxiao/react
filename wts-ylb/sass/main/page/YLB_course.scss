@@ -1,0 +1,84 @@
+@import "../../helper/_mixin.scss";
+@import "../../helper/_variables.scss";
+.YLB_course{
+    overflow: hidden;
+    position: relative;
+    .display_hide{
+        display:none;
+    }
+    .display_show{
+        display:block;
+    }
+    .modal{
+        width:100%;
+        height:100%;
+        position: absolute;
+        z-index:99;
+        background:rgba(101,101,101,0.8);
+        top:0;
+        left:0;
+        .pop_pic{
+            width:r(590);
+            height:r(650);
+            background-size:100% 100%;
+            margin:0 auto;
+            margin-top:r(348);
+            position: relative;
+            img{
+                width:100%;
+                height:100%;
+            }
+            .qr_code{
+                width:r(346);
+                height:r(346);
+                position: absolute;
+                top:r(169);
+                left:r(122);
+                border-radius: r(10);
+                border:none;
+            }
+            .close_btn{
+                width:r(42);
+                height:r(42);
+                background: url("../../images/course/close.png");
+                background-size:100% 100%;
+                position: absolute;
+                bottom:r(-82);
+                left:r(276);
+                cursor: pointer;
+            }
+        }
+    }
+    .advisory{
+        height:auto;
+        position: absolute;
+        z-index: 9;
+        right:r(30);
+        bottom:r(200);
+        top:80%;
+        cursor: pointer;
+        img{
+            width:r(244);
+            width:160px;
+        }
+    }
+    .course_img{
+        width:100%;
+        height:100%;
+        position: relative;
+        overflow: auto;
+        .wrapper{
+            position: relative;
+            background:#1d0076;
+            &>div{
+                margin-top:r(-1);
+                &>img{
+                    max-width: 100%;
+                    border: none;
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}

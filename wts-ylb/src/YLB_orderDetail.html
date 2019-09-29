@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!--顶部css-->
+        @@include("include/header.htm",{ "title":"支付详情", "keywords": "支付详情", "description": "" })
+    </head>
+
+    <body>
+        <div class="succ_ter">
+            <div class="suc_bos">
+                <div class="suc_ters">
+                    <div class="erweima"><img src="@@webRoot/lib/images/YLB/p6.jpg" alt=""></div>
+                    <img src="@@webRoot/lib/images/YLB/ter.png" alt="">
+                    <div class="guihuashiWx">
+                        <div class="guihuashiWx1"></div>
+                        <div class="guihuashiWx2"></div>
+                    </div>
+                    <span class="closeBtn"></span>
+                </div>
+            </div>
+        </div>
+        <!--页面加载动画-->
+        <!-- @@include("include/ready-ani.htm") -->
+        @@include("include/footer.htm")
+        <script type="text/html" id="orderDetail">
+        {{if data.status==2}}
+        <div class="body-container YLB_orderDetail active">
+            <div class="pay_content sus">
+                <div class="pay_pic"><img src="@@webRoot/lib/images/YLB/p5.png" alt=""></div>
+                <div class="sus_title">支付成功</div>
+                <div class="sus_desc">您的专属规划师将全力为您定制方案</div>
+                <div class="sus_Less">
+                    <img src="@@webRoot/lib/images/YLB/susLess.png" alt="">
+                </div>
+
+                <div class="pay_info">
+                    <div class="paybtn success_btns"><span style='background: url("@@webRoot/lib/images/YLB/b11.png");background-size: 100% 100%;line-height: 1.1rem;'>点击对接您的专属规划师</span></div>
+                </div>
+                <!-- <div class="sus_info clearfix">
+                    <div class="erweima">
+                        {{if qrCode}}
+                            <img src="{{qrCode[0].url}}" alt="">
+                        {{else}}
+                            <img src="@@webRoot/lib/images/YLB/p6.jpg" alt="">
+                        {{/if}}
+                        </div>
+                    <div class="sus_info_desc">
+                        <p>长按识别二维码</p>
+                        <p class="active">添加专属规划师顾问</p>
+                        <p>随时随地,想问就问!</p>
+                        <p class="active mobileNumber">电话:{{mobile}}</p>
+                    </div>
+                </div> -->
+            </div>
+
+        </div>
+        {{else}}
+        <div class="body-container YLB_orderDetail">
+            <div class="pay_content">
+                <div class="pay_pic"><img src="@@webRoot/lib/images/YLB/p2.png" alt=""></div>
+                <div class="pay_title">您还未支付成功哦~</div>
+
+                <div class="pay_info">
+                    <div class="desc">支付完成后,您的专属规划师将在<br>24小时内在线或电话初步和您沟通<br>确认您的定制信息,开始您的定制之旅<br><span>请尽快完成支付吧!</span></div>
+                    <div class="paybtn payButtom"><span>继续支付</span></div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </script>
+    </body>
+    <script>
+        $(function () {
+            var login = new YlbLogin()
+            login.init(function (user) {
+                var YLB_orderDetail = {
+                    orderId: $.getQueryString("orderId"),
+                    getOrderDetail: function () {
+                        var self = this;
+                        $.ajaxPackage({
+                            type: "get",
+                            url: "/yuanlv/order/api/detail?id=" + self.orderId,
+                            contentType: "application/json",
+                            async: true,
+                            success: function (data, isError) {
+                                if (!isError) {
+                                    return;
+                                };
+                                $.ajaxPackage({
+                                    type: "post",
+                                    url: "/farmind/qrCode/api/getInfo",
+                                    data: JSON.stringify({}),
+                                    contentType: "application/json",
+                                    async: true,
+                                    success: function (orderDetails, orderErr) {
+                                        if (!orderErr) {
+                                            return;
+                                        };
+
+                                        if (orderDetails.data && orderDetails.data.qrCode && orderDetails.data.qrCode.length > 2) {
+                                            $(".erweima img").attr("src", JSON.parse(orderDetails.data.qrCode)[0].url)
+                                        }
+                                        $(".guihuashiWx .guihuashiWx1").html("规划师微信号:"+orderDetails.data.wxNum);
+                                        $(".guihuashiWx .guihuashiWx2").html("规划师手机号:"+orderDetails.data.mobile);
+                                        var orderDetail = template("orderDetail", data); //模板渲染
+                                        $("body").prepend(orderDetail);
+
+
+                                        //继续支付的点击事件
+                                        $(".payButtom span").click(function () {
+                                            window.location.href = "./YLB_pay.html?orderNo=" + self.orderId;
+                                        })
+
+                                         //点击对接您的专属规划师
+                                        $(".pay_info .success_btns").click(function () {
+                                            $(".succ_ter").fadeIn()
+                                        })
+
+                                        $(".closeBtn").click(function () {
+                                            $(".succ_ter").hide()
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    },
+                }
+                YLB_orderDetail.getOrderDetail();
+            })
+        })
+    </script>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"计划详情", "keywords": "计划详情", "description": "" })
+</head>
+
+<body>
+    <!--页面加载动画-->
+    <!-- @@include("include/ready-ani.htm") -->
+    <div class="body-container YLB_planDesc">
+        <div class="title">
+            <div class="title_pic"><img src="@@webRoot/lib/images/YLB/b2.png" alt=""></div>
+            <div class="title01"></div>
+            <div class="title02"></div>
+            <div class="title03">
+                <div class="title03_desc clearfix">
+                    <div class="left"><img src="@@webRoot/lib/images/YLB/b3.png" alt=""></div>
+                    <div class="right">
+                        <p class="p1">服务流程</p>
+                        <p class="p2">支付成功后,我们将按照以下流程为您服务</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content_bar"></div>
+            <div class="item_list">
+                <div class="item clearfix">
+                    <div class="number">1</div>
+                    <div class="item_content">支付成功</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">2</div>
+                    <div class="item_content">添加远虑保助理微信:18163358504</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">3</div>
+                    <div class="item_content">规划师在线或电话和您沟通(确认您的基本信息)</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">4</div>
+                    <div class="item_content">进行保障方案定制</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">5</div>
+                    <div class="item_content">在线或电话进行方案解读和调整</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">6</div>
+                    <div class="item_content">确认保障方案</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">7</div>
+                    <div class="item_content">协助核保投保</div>
+                </div>
+                <div class="item clearfix">
+                    <div class="number">8</div>
+                    <div class="item_content">理赔全程协助</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer clearfix">
+            <div class="footer_btn price">￥19.9元</div>
+            <div class="footer_btn pay">立即支付</div>
+        </div>
+    </div>
+    @@include("include/footer.htm")
+</body>
+<script>
+    $(function() {
+        var login = new YlbLogin()
+        login.init(function(user) {
+            var YLB_planDesc = {
+                payFlag: true,
+                init: function() {
+                    var self = this;
+                    var name = $.getQueryString("name", 1);
+                    var price = $.getQueryString("price");
+                    $(".title .title02").html(name + "保障方案");
+                    $(".footer .price").html("￥" + price + "元");
+                    //立即支付的点击事件
+                    $(".footer .pay").click(function() {
+                        if (self.payFlag) {
+                            self.payFlag = false;
+                            var params = {
+                                    title: name + "保障方案",
+                                    totalAmount: price,
+                                    userId: user.id
+                                }
+                                //创建订单
+                            $.ajaxPackage({
+                                type: "post",
+                                url: "/yuanlv/order/api/newOrder",
+                                contentType: "application/json",
+                                async: true,
+                                data: JSON.stringify(params),
+                                success: function(data, isError) {
+                                    self.payFlag = true;
+                                    if (!isError) {
+                                        return;
+                                    };
+                                    window.location.href = "./YLB_pay.html?orderNo=" + data.data.id;
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+
+            YLB_planDesc.init();
+        })
+    })
+</script>
+
+</html>

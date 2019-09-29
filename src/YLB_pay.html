@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <!--顶部css-->
+        @@include("include/header.htm",{ "title":"支付", "keywords": "支付", "description": "" })
+    </head>
+
+    <body>
+        <!--页面加载动画-->
+        <!-- @@include("include/ready-ani.htm") -->
+        <div class="succ_ter">
+            <div class="suc_bos">
+                <div class="suc_ters">
+                    <div class="erweima"><img src="@@webRoot/lib/images/YLB/p6.jpg" alt=""></div>
+                    <img src="@@webRoot/lib/images/YLB/ter.png" alt="">
+                    <div class="guihuashiWx">
+                        <div class="guihuashiWx1"></div>
+                        <div class="guihuashiWx2"></div>
+                    </div>
+                    <span class="closeBtn"></span>
+                </div>
+            </div>
+        </div>
+        <div class="body-container YLB_pay">
+        </div>
+        @@include("include/footer.htm")
+        <script src="@@webRoot/lib/js/wxpay.js"></script>
+        <script type="text/html" id="orderDetail">
+        {{if data.status==2}}
+        <div class="pay_content sus">
+            <div class="pay_pic"><img src="@@webRoot/lib/images/YLB/p5.png" alt=""></div>
+            <div class="sus_title">支付成功</div>
+            <div class="sus_desc">您的专属规划师将全力为您定制方案</div>
+            <div class="sus_Less">
+                <img src="@@webRoot/lib/images/YLB/susLess.png" alt="">
+            </div>
+
+            <div class="pay_info">
+                <div class="paybtn success_btns"><span style='background: url("@@webRoot/lib/images/YLB/b11.png");background-size: 100% 100%;line-height: 1.1rem;'>点击对接您的专属规划师</span></div>
+            </div>
+            <!-- <div class="sus_info clearfix">
+                <div class="erweima">
+                    {{if qrCode}}
+                    <img src="{{qrCode[0].url}}" alt="">
+                    {{else}}
+                    <img src="@@webRoot/lib/images/YLB/p6.jpg" alt="">
+                    {{/if}}
+                    </div>
+                <div class="sus_info_desc">
+                    <p>长按识别二维码</p>
+                    <p class="active">添加专属规划师顾问</p>
+                    <p>随时随地,想问就问!</p>
+                    <p class="active">电话:{{mobile || 18164085783}}</p>
+                </div>
+            </div> -->
+        </div>
+        {{else}}
+        <div class="pay_content">
+            <div class="pay_pic"><img src="@@webRoot/lib/images/YLB/p2.png" alt=""></div>
+            <div class="pay_title">远虑保频道</div>
+            <div class="pay_desc">{{data.title}}</div>
+            <div class="pay_info">
+                <div class="price">￥{{data.totalAmount}}</div>
+                <div class="paybtn payButtom"><span>确认支付</span></div>
+            </div>
+            <div class="pay_type"><i class="icon icon-tijiaochenggong"></i><span>支付方式:微信支付</span></div>
+        </div>
+        {{/if}}
+    </script>
+    </body>
+    <script>
+        $(function () {
+            var login = new YlbLogin()
+            login.init(function (user) {
+                var wxPayApi = null;
+                wxPayApi = new WxPay();
+                var YLB_pay = {
+                    orderId: $.getQueryString("orderNo"),
+                    payFlag: true,
+                    init: function () {
+                        this.getOrderDetail();
+                    },
+                    getOrderDetail: function () {
+                        var self = this;
+                        $.ajaxPackage({
+                            type: "get",
+                            url: "/yuanlv/order/api/detail?id=" + self.orderId,
+                            contentType: "application/json",
+                            async: true,
+                            success: function (data, isError) {
+                                if (!isError) {
+                                    return;
+                                };
+
+                                $.ajaxPackage({
+                                    type: "post",
+                                    url: "/farmind/qrCode/api/getInfo",
+                                    data: JSON.stringify({}),
+                                    contentType: "application/json",
+                                    async: true,
+                                    success: function (orderDetail, orderErr) {
+                                        if (!orderErr) {
+                                            return;
+                                        };
+
+                                        if (orderDetail.data && orderDetail.data.qrCode && orderDetail.data.qrCode.length > 2) {
+                                            $(".erweima img").attr("src", JSON.parse(orderDetail.data.qrCode)[0].url)
+                                        }
+                                        $(".guihuashiWx .guihuashiWx1").html("规划师微信号:"+orderDetail.data.name.split(":")[1].split(")")[0]);
+                                        $(".guihuashiWx .guihuashiWx2").html("规划师手机号:"+orderDetail.data.mobile);
+
+                                        var orderDetail = template("orderDetail", data); //模板渲染
+                                        $(".YLB_pay").html(orderDetail);
+
+                                        //确认支付的点击事件
+                                        $(".pay_info .payButtom").click(function () {
+                                            var status = data.data.status;
+                                            if (!status != 0) {
+                                                return layer.msg("该订单不是未支付订单请重新下单!");
+                                            }
+                                            if (self.payFlag) {
+                                                self.payFlag = false;
+                                                self.wxPay();
+                                            }
+                                        })
+
+                                        //点击对接您的专属规划师
+                                        $(".pay_info .success_btns").click(function () {
+                                            $(".succ_ter").fadeIn()
+                                        })
+
+                                        $(".closeBtn").click(function () {
+                                            $(".succ_ter").hide()
+                                        })
+                                    }
+                                })
+
+                            }
+                        })
+                    },
+                    //微信支付
+                    wxPay: function () {
+                        var self = this;
+                        //微信公众号支付
+                        if ($.tools().isWeiXin()) {
+                            var self = this;
+                            wxPayApi.pay({
+                                "tradeNo": self.orderId,
+                                "openid": user.openid
+                            })
+                                .done(function (res) {
+                                    self.payFlag = true;
+                                    window.location.reload();
+                                })
+                                .fail(function (error) {
+                                    self.payFlag = true;
+                                    $.layerAlert('您的支付请求失败，失败原因：' + error);
+                                });
+                        } else {
+                            self.payFlag = true;
+                            //微信web支付
+                            var target = 'https://' + window.location.host + '/pay/wechat/h5?tradeNo=' +
+                                self.orderId + '&orderType=farmind';
+                            window.location.href = './payLead.html?payUrl=' + target;
+                        }
+                    }
+                }
+                YLB_pay.init();
+            })
+        })
+    </script>
+
+</html>

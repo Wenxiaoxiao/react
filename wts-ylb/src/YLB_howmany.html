@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"", "keywords": "", "description": "" })
+    <link rel="stylesheet" href="@@webRoot/lib/css/swiper.min.css">
+    <link rel="stylesheet" href="@@webRoot/lib/css/page/YLB_howmany.css">
+</head>
+
+<body>
+    <!--页面加载动画-->
+    
+    <div class="body-container YLB_howmany">
+        <div class="modal display_hide">
+            <div class="pop_pic">
+                <img src="@@webRoot/lib/images/YLB/howmany/pop1.png"/>
+                <div class="close_btn"></div>
+            </div>
+        </div>
+        @@include("include/float_btn.htm",{ "top":"142","bottom":"20"})
+        <div class="advisory_img">
+            <div class="wrapper">
+                <div class="header"><img  src="@@webRoot/lib/images/YLB/howmany/bg.png"/></div>
+                <div class="center1"><img  src="@@webRoot/lib/images/YLB/howmany/center1.png"/></div>
+                <div class="center2"><img  src="@@webRoot/lib/images/YLB/howmany/center3.png"/></div>
+                <div class="center4"><img  src="@@webRoot/lib/images/YLB/howmany/center5.png"/></div>
+                <div class="center4"><img  src="@@webRoot/lib/images/YLB/howmany/center6.png"/></div>
+            </div>
+        </div>
+    </div>
+    @@include("include/footer-yunying.htm")
+
+</body>
+<script>
+$(".YLB_howmany").height(window.innerHeight);
+$('.modal_pop').click(function(){
+    $(".modal").fadeIn()
+})
+$(".close_btn").click(function () {
+    $(".modal").hide()
+})
+</script>
+
+</html>

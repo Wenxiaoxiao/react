@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--顶部css-->
+    @@include("include/header.htm",{ "title":"远虑保风险测评", "keywords": "审查所有维度风险缺口，科学评估家庭各项风险", "description": "审查所有维度风险缺口，科学评估家庭各项风险" })
+    <link rel="stylesheet" type="text/css" href="@@webRoot/lib/css/mobileSelect.css" />
+    <link rel="stylesheet" href="@@webRoot/lib/css/page/riskAssessment-0927.css">
+</head>
+
+<body>
+    <!--页面加载动画-->
+    
+    <div class="body-container riskAssessment-0927">
+        <div class="cover_pic display_none"><img src="@@webRoot/lib/images/riskAssessment-0927/cover_pic.jpg"/></div>
+        <div class="wrapper1 ">
+            <div class="btn"><img src="@@webRoot/lib/images/riskAssessment-0927/btn.png"/></div>
+        </div>
+        <div class="wrapper2 display_none">
+            <div class="title">您的家庭投保计划</div>
+            <div class="sub_title">详细家庭信息甄选更适合的保障方案</div>
+            <div class="content">
+                <div class="description"><span>您的性别：</span></div>
+                <div class="sex">
+                    <div class="man item" onclick="SexItem(this,'man')">
+                        <div class="pic"><img src="@@webRoot/lib/images/riskAssessment-0927/man.png"/></div>
+                        <div class="text">男士</div>
+                    </div>
+                    <div class="woman item" onclick="SexItem(this,'woman')">
+                        <div class="pic"><img src="@@webRoot/lib/images/riskAssessment-0927/woman.png"/></div>
+                        <div class="text">女士</div>
+                    </div>
+                </div>
+                <div class="description"><span>计划投保家庭成员：</span></div>
+                
+                <div class="members"></div>
+                <div class="btn blue_btn">下一步</div>
+            </div>
+        </div>
+        <div class="wrapper3 display_none">
+            <div class="title">工作状况及社保情况</div>
+            <div class="sub_title">职业差别和社保有无，保障同样有所区别</div>
+            <div class="content">
+                <div class="description"><span>投保人工作：</span>
+                    <div class="target" id="job"></div>
+                </div>
+                <div class="worktypes job"></div>
+                <div class="description"><span>投保人社保：</span><div class="target" id="socialSecurity"></div></div>
+                <div class="socialSec socialSecurity"></div>
+                <div class="btn blue_btn next_btn">下一步</div>
+                <div class="btn prev_btn">返回上一步</div>
+            </div>
+        </div>
+        <div class="wrapper4 display_none">
+            <div class="title">投保人个人情况</div>
+            <div class="sub_title">告知个人详情精准计算保费，避免更多烦恼</div>
+            <div class="content">
+                <div class="description"><span>投保人出生日期：</span><div class="target" id="birthday"></div></div>
+                <div class="birthday" id="birth_day">
+                    点击选择出生日期
+                </div>
+                <div class="description"><span>投保人健康状况：</span><div class="target" id="healthInfo"></div></div>
+                <div class="health_status healthInfo"></div>
+                <div class="btn blue_btn next_btn">下一步</div>
+                <div class="btn prev_btn">返回上一步</div>
+            </div>
+        </div>
+        <div class="wrapper5 display_none">
+            <div class="title">您的家庭资产状况</div>
+            <div class="sub_title">以自身情况合理分配预算</div>
+            <div class="content">
+                <div class="description"><span>家庭年收入：</span></div>
+                <div class="familyIncome"></div>
+                <div class="description"><span>家庭总负债：</span></div>
+                <div class="familyDebt"></div>
+                <div class="btn blue_btn next_btn">下一步</div>
+                <div class="btn prev_btn">返回上一步</div>
+            </div>
+        </div>
+        <div class="wrapper6 display_none">
+            <div class="title">投保人居住城市</div>
+            <div class="sub_title">保险产品销售会受地区限制影响</div>
+            <div class="content">
+                <div class="description"><span>居住城市：</span><div class="target" id="province"></div></div>
+                <div class="location province" id="province_city">点击选择地区</div>
+                <div class="btn blue_btn next_btn">提交测评</div>
+                <div class="btn prev_btn">返回上一步</div>
+            </div>
+        </div>
+        <div class="modal display_none">
+            <div class="name"><span class="label">您的姓名：</span><input id="name" oninput="nameInput()"/><span class="msg display_none">姓名格式不正确</span></div>
+            <div class="divider"></div>
+            <div class="mobile"><span class="label">您的手机号：</span><input id="mobile" oninput="phoneInput()"/><span class="msg display_none">电话号码格式不正确</span></div>
+            <div class="btn blue_btn submit_btn">确认提交</div>
+        </div>
+        <div class="wrapper7 display_none">
+            <div class="content">
+                <div class="pic"><img src="@@webRoot/lib/images/riskAssessment-0927/icon.png"/></div>
+                <div class="result">&nbsp;测评信息提交成功！</div>
+                <div class="text">长按识别下方二维码&nbsp;<span>添加远虑保助理老师</span></div>
+                <div class="text">为您进行下一步答疑解惑</div>
+                <div class="qr_code"><img src=""/></div>
+            </div>
+        </div>
+        <div class="alert display_none">还有信息未填写，请检查</div>
+    </div>
+    @@include("include/footer-yunying.htm")
+    <script src="@@webRoot/lib/js/mobileSelect.js"></script>
+
+</body>
+<!-- 模板① -->
+<script id="test" type="text/html">
+    {{each list as value i}}
+    <div class="item">{{value}}</div>
+    {{/each}}
+</script>
+<!-- 模板② -->
+<script id="test1" type="text/html">
+    <select id="{{title}}">
+    {{each list as value i}}
+    {{if i == 0}}
+    <option value="" selected="selected">请选择</option>
+    {{else}}
+    <option value="{{value}}">{{value}}</option>
+    {{/if}}
+    {{/each}}
+    </select>
+</script>
+<!-- 模板③ -->
+<script id="test2" type="text/html">
+    {{each list as value i}}
+    {{if i == 0}}
+    <div class="chosed" onclick=btnChange(this)><div class="icon"></div><div class="text">{{value}}</div></div>
+    {{else}}
+    <div class="unchosed" onclick=btnChange(this)><div class="icon"></div><div class="text">{{value}}</div></div>
+    {{/if}}
+    {{/each}}
+</script>
+<script>
+var submitData = {name:"",sex: "",familyIncome:"",familyDebt:"",mobile:"",members: []};
+$(".riskAssessment-0927").height(window.innerHeight);
+$(function () {
+    //分享
+    $.shareWx({
+        title: "远虑保风险测评",
+        desc: '审查所有维度风险缺口，科学评估家庭各项风险。',
+        img:'https://bx.wts999.com/m/ylb/lib/images/riskAssessment-0927/cover_pic.jpg',
+    });
+    var memberData = {
+        title:'成员',
+        list:['本人','配偶','父亲','母亲','儿子','女儿','配偶父亲','配偶母亲']
+    };
+    var html_memberData = template('test', memberData);
+    $(".wrapper2 .members").html(html_memberData);
+
+    var workData = {
+        title:'工作',
+        list:['室内轻体力','室内重脑力','户外轻体力','户外重体力','高风险作业','家庭主妇/男','其他']
+    }
+    var html_workData = template('test', workData);
+    $(".wrapper3 .worktypes").html(html_workData);
+
+    var healthData = {
+        title:'健康',
+        list:['健康无疾病','三高','家族遗传病','两年内住院','心脏问题','肝病','良性肿瘤','其他']
+    }
+
+    var html_healthData = template('test', healthData);
+    $(".wrapper4 .health_status").html(html_healthData);
+
+    var socialData = {
+        title:'社保',
+        list:['有','没有']
+    }
+
+    var html_socialData = template('test', socialData);
+    $(".wrapper3 .socialSec").html(html_socialData);
+
+    var familyDebtData = {
+        title:'familyDebt',
+        list:['','无','30万以内','30-50万','50-100万','100万以上']
+    }
+
+    var familyDebt_html = template('test1',familyDebtData);
+    $(".wrapper5 .familyDebt").html(familyDebt_html);
+
+    var familyIncomeData = {
+        title:'familyIncome',
+        list:['','30万以内','30-50万','50-100万','100万以上']
+    }
+
+    var familyIncome_html = template('test1',familyIncomeData);
+    $(".wrapper5 .familyIncome").html(familyIncome_html);
+    selectEvent('familyIncome');
+    selectEvent('familyDebt');
+})
+//资产状况
+function selectEvent(id){
+    var tmp = `${id}`;
+    tmp = document.getElementById(id);
+    var sele = tmp.options;
+    tmp.onchange = function(){
+        var index = tmp.selectedIndex;
+        if(index > 0){
+            submitData[`${id}`] = sele[index].value;
+        }
+    }
+}
+
+//按钮切换
+function btnChange(event){
+    console.log(event);
+    $(event).addClass("chosed");
+    $(event).siblings().removeClass("chosed");
+    $(event).removeClass("unchosed");
+    $(event).siblings().addClass("unchosed");
+    var _that = event;
+    //blue
+    var targetId = $(_that).parent().attr('id');
+    // console.log(targetId);
+    $(`.`+[targetId]+`>.item`).removeClass("focus");
+    if(targetId === "birthday"){
+        $(`#birth_day`).text("点击选择出生日期");
+    }
+    if(targetId === "province"){
+        $(`#province_city`).text("点击选择地区");
+    }
+}
+
+//提示框
+function tipModal(time){
+    $(".alert").fadeIn();
+    setTimeout(function(){
+        $(".alert").fadeOut();
+    },time)
+}
+
+//=====================
+//开始测评界面JS
+$(".wrapper1>.btn").click(function(){
+    $(".wrapper1").addClass("display_none");
+    $(".wrapper2").removeClass("display_none");
+})
+//家庭投保计划
+function SexItem(event,sex){
+    $(event).addClass("focus");
+    $(event).siblings().removeClass("focus");
+    submitData.sex = sex === 'woman'?'女':'男';
+}
+
+$(".wrapper2>.content>.members").on('click','.item',function(){
+    var flag = $(this).hasClass("focus");
+    if(flag){
+        $(this).removeClass("focus");
+    }
+    else{
+        $(this).addClass("focus");
+    }
+})
+$(".wrapper2>.content>.btn").click(function(){
+    var tmp = $(".wrapper2>.content>.members>.focus");
+    if(tmp.length<1 || submitData.sex === ""){
+        tipModal(1000);
+        return
+    }
+    else{
+        
+        var tmp = $(".wrapper2>.content>.members>.focus"),tmpArr = [];
+        $.each(tmp,function(index,item){
+            tmpArr.push(item.innerText);
+        })
+        var targetData = {
+        title:'target',
+        list:tmpArr
+        }
+        var target_html = template('test2',targetData);
+        $(".target").html(target_html);
+
+        $(".wrapper2").addClass("display_none");
+        $(".wrapper3").removeClass("display_none");
+    }
+})
+
+//工作情况及社保情况
+
+//工作情况
+$(".wrapper3>.content>.worktypes").on('click','.item',function(){
+    $(this).addClass("focus");
+    $(this).siblings().removeClass("focus");
+    var _that = this;
+    // memberJudge(_that,'wrapper3',0,'job');
+    var memberRole = $(".wrapper3>.content>.description>.target>.chosed")[0].innerText;
+    submitData.members.forEach(function(item,index,arr){
+        if(item.memberRole === memberRole){
+            submitData.members[index].job = _that.innerText
+        }
+    })
+})
+//社保情况
+$(".wrapper3>.content>.socialSec").on('click','.item',function(){
+    $(this).addClass("focus");
+    $(this).siblings().removeClass("focus");
+    var _that = this;
+    var memberRole = $(".wrapper3>.content>.description>.target>.chosed")[1].innerText;
+    submitData.members.forEach(function(item,index,arr){
+        if(item.memberRole === memberRole){
+            submitData.members[index].socialSecurity = _that.innerText == "有"?"是":"否"
+        }
+    })
+})
+
+$(".wrapper3>.content>.next_btn").click(function(){
+    console.log(submitData);
+    //这里需要判断
+    var flag = true;
+    submitData.members.forEach(function(item,index){
+        if(item.job === "" || item.socialSecurity === ""){
+            flag = false;
+        }
+    })
+    if(flag){
+        $(".wrapper3").addClass("display_none");
+        $(".wrapper4").removeClass("display_none");
+    }
+    else{
+        tipModal(1000);
+        return
+    }   
+})
+//返回
+$(".wrapper3>.content>.prev_btn").click(function(){
+    //清空
+    submitData.members = [];
+    submitData.sex = "";
+    $(".wrapper2 .members .item").removeClass("focus");
+    $(".wrapper2 .sex .item").removeClass("focus");
+    $(".wrapper3 .worktypes .item").removeClass("focus");
+    $(".wrapper3 .socialSecurity .item").removeClass("focus");
+    $(".wrapper3").addClass("display_none");
+    $(".wrapper2").removeClass("display_none");
+})
+
+
+//个人情况
+//得到json
+function Day_data(end){
+    var tmp = [];
+    for(var m =1;m<end+1;m++){
+        var tmpItem = {id:m<10?'0'+m:m,value:m<10?'0'+m+'日':m+'日'};
+        tmp.push(tmpItem);
+    }
+    return tmp;
+}
+
+function getDayJson(){
+    var year_data =[],day_data=[];
+    var end_year = new Date().getFullYear()+1;
+    //闰年
+    var leap_year = [{id:'01',value:'01月',childs:Day_data(31)},{id:'02',value:'02月',childs:Day_data(29)},{id:'03',value:'03月',childs:Day_data(31)},{id:'04',value:'04月',childs:Day_data(30)},{id:'05',value:'05月',childs:Day_data(31)},{id:'06',value:'06月',childs:Day_data(30)},
+        {id:'07',value:'07月',childs:Day_data(31)},{id:'08',value:'08月',childs:Day_data(31)},{id:'09',value:'09月',childs:Day_data(30)},{id:'10',value:'10月',childs:Day_data(31)},
+        {id:'11',value:'11月',childs:Day_data(30)},{id:'12',value:'12月',childs:Day_data(31)}];
+    //平年
+    var average_year = [{id:'01',value:'01月',childs:Day_data(31)},{id:'02',value:'02月',childs:Day_data(28)},{id:'03',value:'03月',childs:Day_data(31)},
+        {id:'04',value:'04月',childs:Day_data(30)},{id:'05',value:'05月',childs:Day_data(31)},{id:'06',value:'06月',childs:Day_data(30)},
+        {id:'07',value:'07月',childs:Day_data(31)},{id:'08',value:'08月',childs:Day_data(31)},{id:'09',value:'09月',childs:Day_data(30)},
+        {id:'10',value:'10月',childs:Day_data(31)},{id:'11',value:'11月',childs:Day_data(30)},{id:'12',value:'12月',childs:Day_data(31)}];
+    for(var m =1940;m<end_year;m++){
+        var tmpItem = {};
+        if(m%4==0&&m%100!=0||m%400==0){
+            //闰年
+            tmpItem = {id:m,value:m+'年',childs:leap_year};
+        }
+        else{
+            //平年
+            tmpItem = {id:m,value:m+'年',childs:average_year};
+        }
+        year_data.push(tmpItem);
+    }
+    return year_data;
+}
+
+var mobileSelect2 = new MobileSelect({
+    trigger: '#birth_day',
+    title: '日期选择',
+    wheels: [{data:getDayJson()}],
+    callback:function(indexArr, data){
+        //console.log(data); //Returns the selected json data
+        var memberRole = $(".wrapper4>.content>.description>.target>.chosed")[0].innerText;
+        submitData.members.forEach(function(item,index,arr){
+            if(item.memberRole === memberRole){
+                submitData.members[index].birthday = data[0].id+'-'+data[1].id+'-'+data[2].id
+            }
+        });
+    }
+});
+
+function City_Json(citydata,province){
+    var cityArry = [];
+    citydata[province].forEach(function(item,index,arr){
+        var tmpItem = {id:item,value:item};
+        cityArry.push(tmpItem);
+    })
+    return cityArry;
+}
+
+function Province_City(){
+    var province_city = [],
+    citydata={"安徽":["合肥","芜湖","蚌埠","淮南","马鞍山","淮北","铜陵","安庆","黄山","阜阳","宿州","滁州","六安","宣城","池州","亳州","其他"],"北京":["北京"],"重庆":["重庆"],"福建":["福州","厦门","莆田","三明","泉州","漳州","南平","龙岩","宁德","平潭","其他"],"甘肃":["兰州","嘉峪关","金昌","白银","天水","酒泉","张掖","武威","定西","陇南","平凉","庆阳","临夏回族自治州","甘南藏族自治州","其他"],"广东":["广州","深圳","珠海","汕头","佛山","韶关","湛江","肇庆","江门","茂名","惠州","梅州","汕尾","河源","阳江","清远","东莞","中山","潮州","揭阳","云浮","其他"],"广西":["南宁","柳州","桂林","梧州","北海","防城港","钦州","贵港","玉林","百色","贺州","河池","来宾","崇左","南宁","柳州","其他"],"贵州":["贵阳","六盘水","遵义","安顺","毕节","铜仁","黔西南","黔东南","黔南","其他"],"海南":["海口","三亚","三沙","儋州","其他"],"河北":["石家庄","唐山","秦皇岛","邯郸","邢台","保定","张家口","承德","沧州","廊坊","衡水","定州","辛集","其他"],"黑龙江":["哈尔滨","齐齐哈尔","鸡西","鹤岗","双鸭山","大庆","伊春","佳木斯","七台河","牡丹江","黑河","绥化","大兴安岭","绥芬河","抚远","其他"],"河南":["郑州","开封","洛阳","平顶山","安阳","鹤壁","新乡","焦作","濮阳","许昌","漯河","三门峡","南阳","商丘","周口","信阳","驻马店","济源","其他"],"湖北":["武汉","黄石","十堰","宜昌","襄阳","鄂州","荆门","孝感","荆州","黄冈","咸宁","随州","恩施土家族苗族自治州","仙桃","潜江","天门","神农架","其他"],"湖南":["长沙","株洲","湘潭","衡阳","邵阳","岳阳","常德","张家界","益阳","郴州","永州","怀化","娄底","湘西土家族苗族自治州","其他"],"内蒙古":["呼和浩特","包头","乌海","赤峰","通辽","鄂尔多斯","呼伦贝尔","巴彦淖尔","乌兰察布盟","兴安盟","锡林郭勒盟","阿拉善盟","其他"],"江苏":["南京","无锡","徐州","常州","苏州","南通","连云港","淮安","盐城","扬州","镇江","泰州","宿迁","其他"],"江西":["南昌","九江","上饶","抚州","宜春","吉安","赣州","景德镇","萍乡","新余","鹰潭","其他"],"吉林":["长春","吉林","四平","辽源","通化","白山","白城","松原","延边朝鲜族自治州","吉林省长白山保护开发区","梅河口","公主岭","其他"],"辽宁":["沈阳","大连","鞍山","抚顺","本溪","丹东","锦州","营口","阜新","辽阳","盘锦","铁岭","朝阳","葫芦岛","其他"],"宁夏":["银川","石嘴山","吴忠","固原","中卫","其他"],"青海":["西宁","海东","海北","黄南","海南","果洛","玉树","海西"],"山西":["太原","大同","阳泉","长治","晋城","朔州","晋中","运城","忻州","临汾","吕梁","其他"],"山东":["济南","青岛","淄博","枣庄","东营","烟台","潍坊","济宁","泰安","威海","日照","莱芜","临沂","德州","聊城","滨州","菏泽","其他"],"上海":["上海"],"四川":["成都","绵阳","自贡","攀枝花","泸州","德阳","广元","遂宁","内江","乐山","资阳","宜宾","南充","达州","雅安","阿坝","甘孜","凉山","眉山","广安","巴中","其他"],"天津":["天津"],"西藏":["拉萨","昌都","山南","日喀则","那曲","阿里","林芝","其他"],"新疆":["乌鲁木齐","克拉玛依","吐鲁番","哈密","阿克苏","喀什","和田","昌吉","博尔塔拉","巴音郭楞","克孜勒苏","伊犁","其他"],"云南":["昆明","曲靖","玉溪","昭通","保山","丽江","普洱","临沧","德宏","怒江","迪庆","大理","楚雄","红河","文山","西双版纳","其他"],"浙江":["杭州","宁波","温州","嘉兴","湖州","绍兴","金华","衢州","舟山","台州","丽水","其他"],"陕西":["西安","宝鸡","铜川","咸阳","渭南","延安","汉中","榆林","安康","商洛","杨凌示范区","其他"]};
+    for(city in citydata){
+        var tmpItem = {id:city,value:city,childs:City_Json(citydata,city)};
+        province_city.push(tmpItem);
+    }
+    return province_city;
+}
+
+var mobileSelect1 = new MobileSelect({
+    trigger: '#province_city',
+    title: '地区选择',
+    wheels: [{data:Province_City()}],
+    callback:function(indexArr, data){
+        var memberRole = $(".wrapper6>.content>.description>.target>.chosed")[0].innerText;
+        submitData.members.forEach(function(item,index,arr){
+            if(item.memberRole === memberRole){
+                submitData.members[index].province = data[0].id;
+                submitData.members[index].city = data[1].id;
+            }
+        })
+    }
+});
+//健康状况
+$(".wrapper4>.content>.healthInfo").on('click','.item',function(){
+    $(this).addClass("focus");
+    $(this).siblings().removeClass("focus");
+    var _that = this;
+    var memberRole = $(".wrapper4>.content>.description>.target>.chosed")[1].innerText;
+    submitData.members.forEach(function(item,index){
+        if(item.memberRole === memberRole){
+            submitData.members[index].healthInfo = _that.innerText;
+        }
+    })
+})
+
+$(".wrapper4>.content>.next_btn").click(function(){
+    console.log(submitData);
+    var flag = true;
+    submitData.members.forEach(function(item,index){
+        if(item.birthday === "" || item.healthInfo === ""){
+            flag = false;
+        }
+    })
+    if(flag){
+        $(".wrapper4").addClass("display_none");
+        $(".wrapper5").removeClass("display_none");
+    }
+    else{
+        tipModal(1000);
+        return
+    }
+})
+
+$(".wrapper4>.content>.prev_btn").click(function(){
+    console.log(submitData);
+    //清空
+    submitData.members.forEach(function(item){
+        item.birthday="";
+        item.healthInfo="";
+        item.socialSecurity="";
+        item.job="";
+    })
+
+    $(".wrapper3 .worktypes .item").removeClass("focus");
+    $(".wrapper3 .socialSecurity .item").removeClass("focus");
+    $("#birth_day").text("点击选择出生日期");
+    $(".wrapper4 .healthInfo .item").removeClass("focus");
+
+    $(".wrapper4").addClass("display_none");
+    $(".wrapper3").removeClass("display_none");
+})
+
+$(".wrapper5>.content>.next_btn").click(function(){
+    //校验
+    var flag = true;
+    if(submitData.familyIncome === "" || submitData.familyDebt === ""){
+        flag = false;
+    }
+    if(flag){
+        $(".wrapper5").addClass("display_none");
+        $(".wrapper6").removeClass("display_none");
+    }
+    else{
+        tipModal(1000);
+        return
+    }
+})
+$(".wrapper5>.content>.prev_btn").click(function(){
+    console.log(submitData);
+    //清空
+    submitData.members.forEach(function(item){
+        item.birthday="";
+        item.healthInfo="";
+    })
+    submitData.familyIncome = "";
+    submitData.familyDebt = "";
+
+    $("#birth_day").text("点击选择出生日期");
+    $(".wrapper4 .healthInfo .item").removeClass("focus");
+    $("#familyIncome").val("");
+    $("#familyDebt").val("");
+
+    $(".wrapper5").addClass("display_none");
+    $(".wrapper4").removeClass("display_none");
+})
+//居住城市
+$(".wrapper6>.content>.next_btn").click(function(){
+    console.log(submitData);
+    //校验
+    var flag = true;
+    submitData.members.forEach(function(item,index){
+        if(item.province === ""){
+            flag = false;
+        }
+    })
+    if(flag){
+        //出现弹窗
+        var flag = $(".modal").hasClass("display_none");
+        if(flag){
+            $(".modal").fadeIn();
+        }
+    }
+    else{
+        tipModal(1000);
+        return
+    }
+})
+$(".wrapper6>.content>.prev_btn").click(function(){
+    console.log(submitData);
+    //清空
+    submitData.members.forEach(function(item){
+        item.city="";
+        item.province="";
+    })
+    submitData.familyIncome = "";
+    submitData.familyDebt = "";
+
+    $("#province_city").text("点击选择地区");
+    $("#familyIncome").val("");
+    $("#familyDebt").val("");
+
+    $(".wrapper6").addClass("display_none");
+    $(".wrapper5").removeClass("display_none");
+})
+//姓名电话
+function phoneInput(){
+    var phoneReg = /^1[3,4,5,7,8]\d{9}$/;
+    var msg = phoneReg.test($("#mobile")[0].value);
+    if(!msg){
+        $(".modal .mobile .msg").removeClass("display_none");
+    }
+    else{
+        $(".modal .mobile .msg").addClass("display_none");
+    }
+}
+
+function nameInput(){
+    var nameReg = /^[\u4e00-\u9fa5]{2,10}$|^[\w+\s]{1,20}$/;
+    var msg = nameReg.test($("#name")[0].value);
+    if(!msg){
+        $(".modal .name .msg").removeClass("display_none");
+    }
+    else{
+        $(".modal .name .msg").addClass("display_none");
+    }
+}
+
+$(".modal>.submit_btn").click(function(){
+    //校验
+    var phoneReg = /^1[3,4,5,7,8]\d{9}$/;
+    var nameReg = /^[\u4e00-\u9fa5]{2,10}$|^[\w+\s]{1,20}$/;
+    submitData.name = $("#name")[0].value;
+    submitData.mobile = $("#mobile")[0].value;
+    if(nameReg.test(submitData.name) && phoneReg.test(submitData.mobile)){
+        $(".modal").fadeOut();
+        //将数据传给后台
+        console.log(submitData);
+        $.ajaxPackage({
+            type: "post",
+            url: "/farmind/riskEvaluate/api/submit",
+            contentType: "application/json",
+            async: true,
+            data:JSON.stringify(submitData),
+            success: function (data, isError) {
+                if (!isError) {
+                    return;
+                };
+                if(data.httpCode === 200){
+                    //请求二维码
+                    $.ajaxPackage({
+                        type: "get",
+                        url: "/yuanlv/common/api/param?key=riskQrCode",
+                        contentType: "application/json",
+                        async: true,
+                        success: function (data, isError) {
+                            if (!isError) {
+                                return;
+                            };
+                            if(data.httpCode === 200){
+                                $(".wrapper7>.content>.qr_code>img").attr("src",data.data);
+                                $(".wrapper6").addClass("display_none");
+                                $(".wrapper7").removeClass("display_none");
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    }
+    else{
+        tipModal(1000);
+        return
+    }
+})
+//提交成功
+</script>
+
+</html>
